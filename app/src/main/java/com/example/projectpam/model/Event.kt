@@ -3,6 +3,13 @@ package com.example.projectpam.model
 import kotlinx.serialization.Serializable
 
 @Serializable
+data class AllEventResponse (
+    val status: Boolean,
+    val message: String,
+    val data: List<Event>
+)
+
+@Serializable
 data class EventDetailResponse (
     val status: Boolean,
     val message: String,
