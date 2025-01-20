@@ -3,6 +3,13 @@ package com.example.projectpam.model
 import kotlinx.serialization.Serializable
 
 @Serializable
+data class TransaksiDetailResponse (
+    val status: Boolean,
+    val message: String,
+    val data: List<Transaksi>
+)
+
+@Serializable
 data class Transaksi (
     val id_transaksi: Int,
     val id_tiket: Int,
