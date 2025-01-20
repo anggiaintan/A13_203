@@ -1,6 +1,14 @@
 package com.example.projectpam.model
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+
+@Serializable
+data class AllPesertaResponse (
+    val status: Boolean,
+    val message: String,
+    val data: List<Peserta>
+)
 
 @Serializable
 data class PesertaDetailResponse (
