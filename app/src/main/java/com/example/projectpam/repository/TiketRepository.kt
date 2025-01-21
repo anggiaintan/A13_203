@@ -36,7 +36,7 @@ class NetworkTiketRepository (
             val response = tiketApiService.deleteTiket(id)
             if (!response.isSuccessful) {
                 throw IOException (
-                    "Failed to delete mahasiswa. HTTP Status code: " +
+                    "Failed to delete tiket. HTTP Status code: " +
                     "${response.code()}")
             } else {
                 response.message()

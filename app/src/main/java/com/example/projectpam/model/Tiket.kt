@@ -13,7 +13,7 @@ data class AllTiketResponse (
 data class TiketDetailResponse (
     val status: Boolean,
     val message: String,
-    val data: List<Event>
+    val data: Tiket
 )
 
 @Serializable

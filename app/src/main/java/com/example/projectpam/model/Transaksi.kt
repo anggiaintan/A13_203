@@ -13,7 +13,7 @@ data class AllTransaksiResponse (
 data class TransaksiDetailResponse (
     val status: Boolean,
     val message: String,
-    val data: List<Transaksi>
+    val data: Transaksi
 )
 
 @Serializable

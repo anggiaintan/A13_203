@@ -36,7 +36,7 @@ private val pesertaApiService: PesertaService
             val response = pesertaApiService.deletePeserta(id)
             if (!response.isSuccessful) {
                 throw IOException(
-                    "Failed to delete mahasiswa. HTTP Status code: " +
+                    "Failed to delete peserta. HTTP Status code: " +
                             "${response.code()}")
             } else {
                 response.message()

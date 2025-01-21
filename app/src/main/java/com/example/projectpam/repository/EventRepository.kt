@@ -36,7 +36,7 @@ class NetworkEventRepository (
             val response = eventApiService.deleteEvent(id)
             if (!response.isSuccessful) {
                 throw IOException(
-                    "Failed to delete mahasiswa. HTTP Status code: " +
+                    "Failed to delete event. HTTP Status code: " +
                             "${response.code()}")
             } else {
                 response.message()
