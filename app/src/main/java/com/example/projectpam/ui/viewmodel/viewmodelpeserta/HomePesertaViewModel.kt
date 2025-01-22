@@ -13,12 +13,12 @@ import java.io.IOException
 
 
 sealed class HomeUiState {
-    data class Success(val peserta: List<Peserta>) : HomeUiState()
+    data class Success(val psrta: List<Peserta>) : HomeUiState()
     object Error : HomeUiState()
     object Loading : HomeUiState()
 }
 
-class HomePesertaViewModel (private val peserta: PesertaRepository) : ViewModel() {
+class HomePesertaViewModel (private val psrta: PesertaRepository) : ViewModel() {
     var pesertaUiState: HomeUiState by mutableStateOf(HomeUiState.Loading)
         private set
 
@@ -30,7 +30,7 @@ class HomePesertaViewModel (private val peserta: PesertaRepository) : ViewModel(
         viewModelScope.launch {
             pesertaUiState = HomeUiState.Loading
             pesertaUiState = try {
-                HomeUiState.Success(peserta.getAllPeserta().data)
+                HomeUiState.Success(psrta.getAllPeserta().data)
             } catch (e: IOException) {
                 HomeUiState.Error
             } catch (e: HttpException) {
@@ -42,7 +42,7 @@ class HomePesertaViewModel (private val peserta: PesertaRepository) : ViewModel(
     fun deletePeserta(id: Int) {
         viewModelScope.launch {
             try {
-                peserta.deletePeserta(id)
+                psrta.deletePeserta(id)
             } catch (e: IOException) {
                 HomeUiState.Error
             } catch (e: HttpException) {
