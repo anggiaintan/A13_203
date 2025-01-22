@@ -40,6 +40,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.projectpam.R
 import com.example.projectpam.model.Peserta
 import com.example.projectpam.navigation.DestinasiNavigasi
+import com.example.projectpam.ui.customwidget.CostumeTopAppBar
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.HomePesertaViewModel
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.HomeUiState
 
@@ -61,7 +62,7 @@ fun HomeScreen (
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CostumeTopAppBar (
-                tittle = DestinasiHome.titleRes,
+                title = DestinasiHome.titleRes,
                 canNavigateBack = false,
                 scrollBehavior = scrollBehavior,
                 onRefresh = {
