@@ -58,7 +58,7 @@ fun EntryPesertaScreen (
             innerPadding ->
         EntryBody(
             insertUiState = viewModel.uiState,
-            onSiswaValueChange = viewModel::updateInsertPesertaState,
+            onPesertaValueChange = viewModel::updateInsertPesertaState,
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.insertPeserta()
@@ -75,7 +75,7 @@ fun EntryPesertaScreen (
 @Composable
 fun EntryBody (
     insertUiState: InsertUiState,
-    onSiswaValueChange: (InsertUiEvent) -> Unit,
+    onPesertaValueChange: (InsertUiEvent) -> Unit,
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -85,7 +85,7 @@ fun EntryBody (
     ) {
         FormInput(
             insertUiEvent = insertUiState.insertUiEvent,
-            onValueChange = onSiswaValueChange,
+            onValueChange = onPesertaValueChange,
             modifier = Modifier.fillMaxWidth()
         )
         Button(
