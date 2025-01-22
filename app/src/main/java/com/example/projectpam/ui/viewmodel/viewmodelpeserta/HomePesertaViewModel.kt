@@ -13,7 +13,7 @@ import java.io.IOException
 
 
 sealed class HomeUiState {
-    data class Success(val psrta: List<Peserta>) : HomeUiState()
+    data class Success(val peserta: List<Peserta>) : HomeUiState()
     object Error : HomeUiState()
     object Loading : HomeUiState()
 }

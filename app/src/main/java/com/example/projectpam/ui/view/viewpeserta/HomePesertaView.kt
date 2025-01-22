@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
@@ -111,7 +112,8 @@ fun HomeStatus (
                 }
             } else {
                 PesertaLayout(
-                    peserta = homeUiState.peserta, modifier = modifier.fillMaxWidth(),
+                    peserta = homeUiState.peserta,
+                    modifier = modifier.fillMaxWidth(),
                     onDetailClick = {
                         onDetailClick(it.id_peserta)
                     },
@@ -170,7 +172,7 @@ fun PesertaLayout (
                     .fillMaxWidth()
                     .clickable { onDetailClick(peserta) },
                 onDeleteClick = {
-                    onDeleteClick(peserta)
+                    onDeleteClick(it)
                 }
             )
         }

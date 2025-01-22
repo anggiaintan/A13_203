@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.projectpam.model.Peserta
 import com.example.projectpam.repository.PesertaRepository
+import com.example.projectpam.ui.view.viewpeserta.DestinasiUpdate
 import kotlinx.coroutines.launch
 
 class UpdatePesertaViewModel (

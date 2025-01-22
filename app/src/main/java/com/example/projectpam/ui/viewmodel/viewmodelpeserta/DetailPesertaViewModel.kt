@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.projectpam.model.Peserta
 import com.example.projectpam.repository.PesertaRepository
+import com.example.projectpam.ui.view.viewpeserta.DestinasiDetail
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
