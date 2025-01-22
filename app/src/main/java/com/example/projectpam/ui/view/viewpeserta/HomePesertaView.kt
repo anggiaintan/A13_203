@@ -43,6 +43,7 @@ import com.example.projectpam.navigation.DestinasiNavigasi
 import com.example.projectpam.ui.customwidget.CostumeTopAppBar
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.HomePesertaViewModel
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.HomeUiState
+import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 
 object DestinasiHome : DestinasiNavigasi {
     override val route = "home"
@@ -55,7 +56,7 @@ fun HomeScreen (
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
     onDetailClick: (Int) -> Unit = {},
-    viewModel: HomePesertaViewModel = viewModel( ) // * belum ada factory
+    viewModel: HomePesertaViewModel = viewModel( factory = PenyediaViewModel.Factory)
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold (
