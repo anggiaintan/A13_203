@@ -9,6 +9,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+sealed class DetailUiState {
+    data class Success (val peserta: Peserta) : DetailUiState()
+    object Error : DetailUiState()
+    object Loading : DetailUiState()
+}
+
 class DetailPesertaViewModel (
     savedStateHandle: SavedStateHandle,
     private val psrta: PesertaRepository
