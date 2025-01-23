@@ -32,7 +32,7 @@ import com.example.projectpam.ui.viewmodel.viewmodelevent.DetailEventViewModel
 import com.example.projectpam.ui.viewmodel.viewmodelevent.DetailUiState
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 
-object DestinasiDetail : DestinasiNavigasi {
+object DestinasiDetailEvent : DestinasiNavigasi {
     override val route = "detail"
     const val ID_EVENT = "id_event"
     val routeWithArg = "$route/{$ID_EVENT}"
@@ -51,7 +51,7 @@ fun DetailEventView (
     Scaffold (
         topBar = {
             CostumeTopAppBar(
-                title = DestinasiDetail.titleRes,
+                title = DestinasiDetailEvent.titleRes,
                 canNavigateBack = true,
                 navigateUp = navigateBack,
                 onRefresh = {viewModel.getDetailEvent()}

@@ -46,7 +46,7 @@ import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 import com.example.projectpam.ui.viewmodel.viewmodeltiket.HomeTiketViewModel
 import com.example.projectpam.ui.viewmodel.viewmodeltiket.HomeUiState
 
-object DestinasiHome : DestinasiNavigasi {
+object DestinasiHomeTiket : DestinasiNavigasi {
     override val route = "home"
     override val titleRes = "Home Tiket"
 }
@@ -64,7 +64,7 @@ fun HomeScreen (
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CostumeTopAppBar (
-                title = DestinasiHome.titleRes,
+                title = DestinasiHomeTiket.titleRes,
                 canNavigateBack = false,
                 scrollBehavior = scrollBehavior,
                 onRefresh = {

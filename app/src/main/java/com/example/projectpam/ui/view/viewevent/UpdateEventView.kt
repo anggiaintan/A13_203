@@ -19,7 +19,7 @@ import com.example.projectpam.ui.viewmodel.viewmodelevent.toEvent
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 import kotlinx.coroutines.launch
 
-object DestinasiUpdate : DestinasiNavigasi {
+object DestinasiUpdateEvent : DestinasiNavigasi {
     override val route = "update"
     const val ID_EVENT = "id_event"
     val routesWithArg = "$route/{$ID_EVENT}"
@@ -40,7 +40,7 @@ fun UpdateEventView (
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CostumeTopAppBar(
-                title = DestinasiUpdate.titleRes,
+                title = DestinasiUpdateEvent.titleRes,
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior,
                 navigateUp = navigateBack

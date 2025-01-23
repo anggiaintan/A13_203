@@ -28,7 +28,7 @@ import com.example.projectpam.ui.viewmodel.viewmodelevent.InsertUiState
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 import kotlinx.coroutines.launch
 
-object DestinasiEntry : DestinasiNavigasi {
+object DestinasiEntryEvent : DestinasiNavigasi {
     override val route = "item_entry"
     override val titleRes = "Insert Event"
 }
@@ -46,7 +46,7 @@ fun EntryEventScreen (
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CostumeTopAppBar(
-                title = DestinasiEntry.titleRes,
+                title = DestinasiEntryEvent.titleRes,
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior,
                 navigateUp = navigateBack

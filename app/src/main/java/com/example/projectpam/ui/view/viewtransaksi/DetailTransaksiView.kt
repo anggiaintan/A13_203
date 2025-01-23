@@ -33,7 +33,7 @@ import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.DetailTransaksiVie
 import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.DetailUiState
 
 
-object DestinasiDetail : DestinasiNavigasi {
+object DestinasiDetailTransaksi : DestinasiNavigasi {
     override val route = "detail"
     const val ID_TRANSAKSI = "id_transaksi"
     val routeWithArg = "$route/{$ID_TRANSAKSI}"
@@ -52,7 +52,7 @@ fun DetailTransaksiView (
     Scaffold (
         topBar = {
             CostumeTopAppBar(
-                title = DestinasiDetail.titleRes,
+                title = DestinasiDetailTransaksi.titleRes,
                 canNavigateBack = true,
                 navigateUp = navigateBack,
                 onRefresh = {viewModel.getDetailTransaksi()}

@@ -28,7 +28,7 @@ import com.example.projectpam.ui.viewmodel.viewmodeltiket.InsertUiEvent
 import com.example.projectpam.ui.viewmodel.viewmodeltiket.InsertUiState
 import kotlinx.coroutines.launch
 
-object DestinasiEntry : DestinasiNavigasi {
+object DestinasiEntryTiket : DestinasiNavigasi {
     override val route = "item_entry"
     override val titleRes = "Insert Tiket"
 }
@@ -46,7 +46,7 @@ fun EntryTiketScreen (
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CostumeTopAppBar(
-                title = DestinasiEntry.titleRes,
+                title = DestinasiEntryTiket.titleRes,
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior,
                 navigateUp = navigateBack

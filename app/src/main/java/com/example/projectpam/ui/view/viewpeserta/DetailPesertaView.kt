@@ -32,7 +32,7 @@ import com.example.projectpam.ui.viewmodel.viewmodelpeserta.DetailPesertaViewMod
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.DetailUiState
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 
-object DestinasiDetail : DestinasiNavigasi {
+object DestinasiDetailPeserta : DestinasiNavigasi {
     override val route = "detail"
     const val ID_PESERTA = "id_peserta"
     val routeWithArg = "$route/{$ID_PESERTA}"
@@ -51,7 +51,7 @@ fun DetailPesertaView (
     Scaffold (
         topBar = {
             CostumeTopAppBar(
-                title = DestinasiDetail.titleRes,
+                title = DestinasiDetailPeserta.titleRes,
                 canNavigateBack = true,
                 navigateUp = navigateBack,
                 onRefresh = {viewModel.getDetailPeserta()}

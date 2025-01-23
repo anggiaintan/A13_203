@@ -19,7 +19,7 @@ import com.example.projectpam.ui.viewmodel.viewmodeltiket.UpdateTiketViewModel
 import com.example.projectpam.ui.viewmodel.viewmodeltiket.toTiket
 import kotlinx.coroutines.launch
 
-object DestinasiUpdate : DestinasiNavigasi {
+object DestinasiUpdateTiket : DestinasiNavigasi {
     override val route = "update"
     const val ID_TIKET = "id_tiket"
     val routesWithArg = "$route/{$ID_TIKET}"
@@ -40,7 +40,7 @@ fun UpdateTiketView (
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CostumeTopAppBar(
-                title = DestinasiUpdate.titleRes,
+                title = DestinasiUpdateTiket.titleRes,
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior,
                 navigateUp = navigateBack

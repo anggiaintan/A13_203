@@ -19,7 +19,7 @@ import com.example.projectpam.ui.viewmodel.viewmodelpeserta.UpdatePesertaViewMod
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.toPeserta
 import kotlinx.coroutines.launch
 
-object DestinasiUpdate : DestinasiNavigasi {
+object DestinasiUpdatePeserta : DestinasiNavigasi {
     override val route = "update"
     const val ID_PESERTA = "id_peserta"
     val routesWithArg = "$route/{$ID_PESERTA}"
@@ -40,7 +40,7 @@ fun UpdatePesertaView (
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CostumeTopAppBar(
-                title = DestinasiUpdate.titleRes,
+                title = DestinasiUpdatePeserta.titleRes,
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior,
                 navigateUp = navigateBack

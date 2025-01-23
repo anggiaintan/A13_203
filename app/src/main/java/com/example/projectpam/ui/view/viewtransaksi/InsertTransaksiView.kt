@@ -28,7 +28,7 @@ import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.InsertUiEvent
 import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.InsertUiState
 import kotlinx.coroutines.launch
 
-object DestinasiEntry : DestinasiNavigasi {
+object DestinasiEntryTransaksi : DestinasiNavigasi {
     override val route = "item_entry"
     override val titleRes = "Insert Transaksi"
 }
@@ -46,7 +46,7 @@ fun EntryTransaksiScreen (
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CostumeTopAppBar(
-                title = DestinasiEntry.titleRes,
+                title = DestinasiEntryTransaksi.titleRes,
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior,
                 navigateUp = navigateBack
