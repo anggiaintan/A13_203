@@ -17,24 +17,24 @@ interface TiketService {
         "Content-Type: application/json",
     )
 
-    @GET (".")
+    @GET ("/gettiket")
     suspend fun getAllTiket(): AllTiketResponse
 
-    @GET ("{id}")
+    @GET ("{id_tiket}")
     suspend fun getTiketById(@Path("id") id: String): TiketDetailResponse
 
-    @POST("store")
+    @POST("storetiket")
     suspend fun insertTiket(@Body tiket: Tiket)
 
-    @PUT("{id}")
+    @PUT("{id_tiket}")
     suspend fun updateTiket(@Path("id") id: String, @Body tiket: Tiket)
 
-    @DELETE("{id}")
+    @DELETE("{id_tiket}")
     suspend fun deleteTiket(@Path("id") id: String): retrofit2.Response<Void>
 
-    @GET("peserta")
+    @GET("getpeserta")
     suspend fun getPesertaList(): List<String>
 
-    @GET("event")
+    @GET("getevent")
     suspend fun getEventList(): List<String>
 }

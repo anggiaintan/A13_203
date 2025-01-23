@@ -17,19 +17,19 @@ interface EventService {
         "Content-Type: application/json",
     )
 
-    @GET(".")
+    @GET("/getevent")
     suspend fun getAllEvent(): AllEventResponse
 
-    @GET("{id}")
+    @GET("{id_event}")
     suspend fun getEventById(@Path("id") id: String): EventDetailResponse
 
-    @POST("store")
+    @POST("storeevent")
     suspend fun insertEvent(@Body event: Event)
 
-    @PUT("{id}")
+    @PUT("{id_event}")
     suspend fun updateEvent(@Path("id") id: String, @Body event: Event)
 
-    @DELETE("{id}")
+    @DELETE("{id_event}")
     suspend fun deleteEvent(@Path("id") id: String): retrofit2.Response<Void>
 
 }
