@@ -31,4 +31,10 @@ interface TiketService {
 
     @DELETE("{id}")
     suspend fun deleteTiket(@Path("id") id: Int): retrofit2.Response<Void>
+
+    @GET("peserta")
+    suspend fun getPesertaList(): List<String>
+
+    @GET("event")
+    suspend fun getEventList(): List<String>
 }

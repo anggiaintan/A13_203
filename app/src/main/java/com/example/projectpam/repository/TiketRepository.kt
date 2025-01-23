@@ -11,6 +11,10 @@ interface TiketRepository {
     suspend fun insertTiket(tiket: Tiket)
     suspend fun updateTiket(id: Int, tiket: Tiket)
     suspend fun deleteTiket(id: Int)
+
+    // Fungsi untuk mendapatkan data peserta dan event
+    suspend fun getDaftarPeserta(): List<String>
+    suspend fun getDaftarEvent(): List<String>
 }
 
 class NetworkTiketRepository (
@@ -44,6 +48,23 @@ class NetworkTiketRepository (
             }
         } catch (e:Exception) {
             throw e
+        }
+    }
+
+    // Implementasi fungsi tambahan
+    override suspend fun getDaftarPeserta(): List<String> {
+        return try {
+            tiketApiService.getPesertaList() // Asumsikan ada endpoint ini
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+
+    override suspend fun getDaftarEvent(): List<String> {
+        return try {
+            tiketApiService.getEventList() // Asumsikan ada endpoint ini
+        } catch (e: Exception) {
+            emptyList()
         }
     }
 }
