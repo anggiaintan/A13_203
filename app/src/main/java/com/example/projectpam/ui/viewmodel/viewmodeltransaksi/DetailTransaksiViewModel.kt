@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.projectpam.model.Transaksi
 import com.example.projectpam.repository.TransaksiRepository
+import com.example.projectpam.ui.view.viewtransaksi.DestinasiDetail
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
