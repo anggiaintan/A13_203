@@ -116,13 +116,13 @@ fun ItemDetailTiket (tiket: Tiket)
             contentColor = MaterialTheme.colorScheme.onPrimaryContainer
         )
     ){  Column (modifier = Modifier.padding(16.dp)) {
-        ComponentDetailTiket(judul = "ID Tiket", isinya = tiket.id_tiket.toString())
+        ComponentDetailTiket(judul = "ID Tiket", isinya = tiket.id_tiket)
         Spacer(modifier = Modifier.padding(4.dp))
-        ComponentDetailTiket(judul = "ID Event", isinya = tiket.id_event.toString())
+        ComponentDetailTiket(judul = "ID Event", isinya = tiket.id_event)
         Spacer(modifier = Modifier.padding(4.dp))
-        ComponentDetailTiket(judul = "ID Pengguna", isinya = tiket.id_pengguna.toString())
+        ComponentDetailTiket(judul = "ID Pengguna", isinya = tiket.id_pengguna)
         Spacer(modifier = Modifier.padding(4.dp))
-        ComponentDetailTiket(judul = "Kapasitas Tiket", isinya = tiket.kapasitas_tiket)
+        ComponentDetailTiket(judul = "Kapasitas Tiket", isinya = tiket.kapasitas_tiket.toString())
         Spacer(modifier = Modifier.padding(4.dp))
         ComponentDetailTiket(judul = "Harga Tiket", isinya = tiket.harga_tiket)
     }

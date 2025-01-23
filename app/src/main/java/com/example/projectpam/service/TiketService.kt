@@ -21,16 +21,16 @@ interface TiketService {
     suspend fun getAllTiket(): AllTiketResponse
 
     @GET ("{id}")
-    suspend fun getTiketById(@Path("id") id: Int): TiketDetailResponse
+    suspend fun getTiketById(@Path("id") id: String): TiketDetailResponse
 
     @POST("store")
     suspend fun insertTiket(@Body tiket: Tiket)
 
     @PUT("{id}")
-    suspend fun updateTiket(@Path("id") id: Int, @Body tiket: Tiket)
+    suspend fun updateTiket(@Path("id") id: String, @Body tiket: Tiket)
 
     @DELETE("{id}")
-    suspend fun deleteTiket(@Path("id") id: Int): retrofit2.Response<Void>
+    suspend fun deleteTiket(@Path("id") id: String): retrofit2.Response<Void>
 
     @GET("peserta")
     suspend fun getPesertaList(): List<String>

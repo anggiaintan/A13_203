@@ -21,11 +21,11 @@ interface TransaksiService {
     suspend fun getAllTransaksi(): AllTransaksiResponse
 
     @GET("{id}")
-    suspend fun getTransaksiById(@Path("id") id: Int): TransaksiDetailResponse
+    suspend fun getTransaksiById(@Path("id") id: String): TransaksiDetailResponse
 
     @POST("store")
     suspend fun insertTransaksi(@Body transaksi: Transaksi)
 
     @DELETE("{id}")
-    suspend fun deleteTransaksi(@Path("id") id: Int): retrofit2.Response<Void>
+    suspend fun deleteTransaksi(@Path("id") id: String): retrofit2.Response<Void>
 }

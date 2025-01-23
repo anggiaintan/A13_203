@@ -32,10 +32,10 @@ data class InsertUiState (
 )
 
 data class InsertUiEvent (
-    val id_tiket: Int = 0,
-    val id_event: Int = 0,
-    val id_pengguna: Int = 0,
-    val kapasitas_tiket: String = "",
+    val id_tiket: String = "",
+    val id_event: String = "",
+    val id_pengguna: String = "",
+    val kapasitas_tiket: Int = 0,
     val harga_tiket: String = ""
 )
 

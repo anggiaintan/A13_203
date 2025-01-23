@@ -38,7 +38,7 @@ class HomeEventViewModel (private val evn: EventRepository) : ViewModel() {
         }
     }
 
-    fun deleteEvent(id: Int) {
+    fun deleteEvent(id: String) {
         viewModelScope.launch {
             try {
                 evn.deleteEvent(id)

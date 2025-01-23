@@ -20,7 +20,7 @@ class DetailPesertaViewModel (
     savedStateHandle: SavedStateHandle,
     private val psrta: PesertaRepository
 ): ViewModel() {
-    private val _id_Peserta: Int = checkNotNull(savedStateHandle[DestinasiDetail.ID_PESERTA])
+    private val _id_Peserta: String = checkNotNull(savedStateHandle[DestinasiDetail.ID_PESERTA])
     private val _detailUiState = MutableStateFlow<DetailUiState>(DetailUiState.Loading)
     val detailUiState: StateFlow<DetailUiState> = _detailUiState
     init { getDetailPeserta() }

@@ -42,7 +42,7 @@ object DestinasiDetail : DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailEventView (
-    id_event: Int,
+    id_event: String,
     modifier: Modifier = Modifier,
     viewModel: DetailEventViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onEditClick: (String) -> Unit,
@@ -59,7 +59,7 @@ fun DetailEventView (
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { onEditClick(id_event.toString()) },
+                onClick = { onEditClick(id_event) },
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(horizontal = 16.dp)
             ) {
@@ -116,7 +116,7 @@ fun ItemDetailEvent (event: Event)
             contentColor = MaterialTheme.colorScheme.onPrimaryContainer
         )
     ){  Column (modifier = Modifier.padding(16.dp)) {
-        ComponentDetailEvent(judul = "ID Event", isinya = event.id_event.toString())
+        ComponentDetailEvent(judul = "ID Event", isinya = event.id_event)
         Spacer(modifier = Modifier.padding(4.dp))
         ComponentDetailEvent(judul = "Nama Event", isinya = event.nama_event)
         Spacer(modifier = Modifier.padding(4.dp))

@@ -7,10 +7,10 @@ import okio.IOException
 
 interface TiketRepository {
     suspend fun getAllTiket(): AllTiketResponse
-    suspend fun getTiketById(id: Int): Tiket
+    suspend fun getTiketById(id: String): Tiket
     suspend fun insertTiket(tiket: Tiket)
-    suspend fun updateTiket(id: Int, tiket: Tiket)
-    suspend fun deleteTiket(id: Int)
+    suspend fun updateTiket(id: String, tiket: Tiket)
+    suspend fun deleteTiket(id: String)
 
     // Fungsi untuk mendapatkan data peserta dan event
     suspend fun getDaftarPeserta(): List<String>
@@ -23,7 +23,7 @@ class NetworkTiketRepository (
     override suspend fun getAllTiket(): AllTiketResponse =
         tiketApiService.getAllTiket()
 
-    override suspend fun getTiketById(id: Int): Tiket {
+    override suspend fun getTiketById(id: String): Tiket {
         return tiketApiService.getTiketById(id).data
     }
 
@@ -31,11 +31,11 @@ class NetworkTiketRepository (
         tiketApiService.insertTiket(tiket)
     }
 
-    override suspend fun updateTiket(id: Int, tiket: Tiket) {
+    override suspend fun updateTiket(id: String, tiket: Tiket) {
         tiketApiService.updateTiket(id, tiket)
     }
 
-    override suspend fun deleteTiket(id: Int) {
+    override suspend fun deleteTiket(id: String) {
         try {
             val response = tiketApiService.deleteTiket(id)
             if (!response.isSuccessful) {

@@ -56,7 +56,7 @@ object DestinasiHome : DestinasiNavigasi {
 fun HomeScreen (
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
-    onDetailClick: (Int) -> Unit = {},
+    onDetailClick: (String) -> Unit = {},
     viewModel: HomeEventViewModel = viewModel( factory = PenyediaViewModel.Factory)
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -101,7 +101,7 @@ fun HomeStatus (
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
     onDeleteClick: (Event) -> Unit = {},
-    onDetailClick: (Int) -> Unit = {},
+    onDetailClick: (String) -> Unit = {},
 ) {
     when (homeUiState) {
         is HomeUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
@@ -199,7 +199,7 @@ fun EventCard (
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text (
-                    text = event.id_event.toString(),
+                    text = event.id_event,
                     style = MaterialTheme.typography.titleLarge
                 )
                 Spacer(Modifier.weight(1f))

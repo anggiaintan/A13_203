@@ -32,7 +32,7 @@ data class InsertUiState (
 )
 
 data class InsertUiEvent (
-    val id_event: Int = 0,
+    val id_event: String = "",
     val nama_event: String = "",
     val deskripsi_event: String = "",
     val tanggal_event: String = "",

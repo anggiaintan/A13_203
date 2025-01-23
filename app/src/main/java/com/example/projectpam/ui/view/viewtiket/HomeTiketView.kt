@@ -56,7 +56,7 @@ object DestinasiHome : DestinasiNavigasi {
 fun HomeScreen (
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
-    onDetailClick: (Int) -> Unit = {},
+    onDetailClick: (String) -> Unit = {},
     viewModel: HomeTiketViewModel = viewModel( factory = PenyediaViewModel.Factory)
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -101,7 +101,7 @@ fun HomeStatus (
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
     onDeleteClick: (Tiket) -> Unit = {},
-    onDetailClick: (Int) -> Unit = {},
+    onDetailClick: (String) -> Unit = {},
 ) {
     when (homeUiState) {
         is HomeUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
@@ -199,7 +199,7 @@ fun TiketCard (
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text (
-                    text = tiket.id_tiket.toString(),
+                    text = tiket.id_tiket,
                     style = MaterialTheme.typography.titleLarge
                 )
                 Spacer(Modifier.weight(1f))
@@ -210,16 +210,16 @@ fun TiketCard (
                     )
                 }
                 Text (
-                    text = tiket.id_event.toString(),
+                    text = tiket.id_event,
                     style = MaterialTheme.typography.titleMedium
                 )
             }
             Text (
-                text = tiket.id_pengguna.toString(),
+                text = tiket.id_pengguna,
                 style = MaterialTheme.typography.titleMedium
             )
             Text (
-                text = tiket.kapasitas_tiket,
+                text = tiket.kapasitas_tiket.toString(),
                 style = MaterialTheme.typography.titleMedium
             )
             Text (

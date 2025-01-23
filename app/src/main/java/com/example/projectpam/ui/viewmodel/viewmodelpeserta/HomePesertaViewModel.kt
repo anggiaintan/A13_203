@@ -39,7 +39,7 @@ class HomePesertaViewModel (private val psrta: PesertaRepository) : ViewModel() 
         }
     }
 
-    fun deletePeserta(id: Int) {
+    fun deletePeserta(id: String) {
         viewModelScope.launch {
             try {
                 psrta.deletePeserta(id)

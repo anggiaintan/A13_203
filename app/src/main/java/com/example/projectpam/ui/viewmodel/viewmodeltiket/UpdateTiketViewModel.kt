@@ -13,7 +13,7 @@ class UpdateTiketViewModel (
     private val tkt: TiketRepository
 ): ViewModel()
 {
-    val id_tiket: Int = checkNotNull(savedStateHandle[DestinasiUpdate.ID_TIKET])
+    val id_tiket: String = checkNotNull(savedStateHandle[DestinasiUpdate.ID_TIKET])
     var uiState = mutableStateOf(InsertUiState())
     init {getTiket()}
     private fun getTiket(){
@@ -28,7 +28,7 @@ class UpdateTiketViewModel (
             }
         }
     }
-    fun updateTiket(id_tiket: Int, tiket: Tiket) {
+    fun updateTiket(id_tiket: String, tiket: Tiket) {
         viewModelScope.launch {
             try {
                 tkt.updateTiket(id_tiket, tiket)

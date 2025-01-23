@@ -18,9 +18,9 @@ data class TiketDetailResponse (
 
 @Serializable
 data class Tiket (
-    val id_tiket: Int,
-    val id_event: Int,
-    val id_pengguna: Int,
-    val kapasitas_tiket: String,
+    val id_tiket: String,
+    val id_event: String,
+    val id_pengguna: String,
+    val kapasitas_tiket: Int,
     val harga_tiket: String
 )

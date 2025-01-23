@@ -21,14 +21,14 @@ interface PesertaService {
     suspend fun getAllPeserta(): AllPesertaResponse
 
     @GET("{id}")
-    suspend fun getPesertaById(@Path("id") id: Int): PesertaDetailResponse
+    suspend fun getPesertaById(@Path("id") id: String): PesertaDetailResponse
 
     @POST("store")
     suspend fun insertPeserta(@Body peserta: Peserta)
 
     @PUT("{id}")
-    suspend fun updatePeserta(@Path("id") id: Int, @Body peserta: Peserta)
+    suspend fun updatePeserta(@Path("id") id: String, @Body peserta: Peserta)
 
     @DELETE("{id}")
-    suspend fun deletePeserta(@Path("id") id: Int): retrofit2.Response<Void>
+    suspend fun deletePeserta(@Path("id") id: String): retrofit2.Response<Void>
 }

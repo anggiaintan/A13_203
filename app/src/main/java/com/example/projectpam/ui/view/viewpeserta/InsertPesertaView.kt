@@ -111,9 +111,9 @@ fun FormInput(
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         OutlinedTextField (
-            value = insertUiEvent.id_peserta.toString(),
+            value = insertUiEvent.id_peserta,
             onValueChange = {onValueChange(
-                insertUiEvent.copy(id_peserta = it.toIntOrNull() ?: 0) // Konversi String ke Int
+                insertUiEvent.copy(id_peserta = it)
             )},
             label = { Text("ID Peserta") },
             modifier = Modifier.fillMaxWidth(),

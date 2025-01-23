@@ -13,7 +13,7 @@ class UpdateEventViewModel (
     private val evn: EventRepository
 ): ViewModel()
 {
-    val id_event: Int = checkNotNull(savedStateHandle[DestinasiUpdate.ID_EVENT])
+    val id_event: String = checkNotNull(savedStateHandle[DestinasiUpdate.ID_EVENT])
     var uiState = mutableStateOf(InsertUiState())
     init {getEvent()}
     private fun getEvent(){
@@ -28,7 +28,7 @@ class UpdateEventViewModel (
             }
         }
     }
-    fun updateEvent(id_event: Int, event: Event) {
+    fun updateEvent(id_event: String, event: Event) {
         viewModelScope.launch {
             try {
                 evn.updateEvent(id_event, event)

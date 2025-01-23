@@ -7,10 +7,10 @@ import okio.IOException
 
 interface PesertaRepository {
     suspend fun getAllPeserta(): AllPesertaResponse
-    suspend fun getPesertaById(id: Int): Peserta
+    suspend fun getPesertaById(id: String): Peserta
     suspend fun insertPeserta(peserta: Peserta)
-    suspend fun updatePeserta(id: Int, peserta: Peserta)
-    suspend fun deletePeserta(id: Int)
+    suspend fun updatePeserta(id: String, peserta: Peserta)
+    suspend fun deletePeserta(id: String)
 }
 
 class NetworkPesertaRepository (
@@ -19,7 +19,7 @@ private val pesertaApiService: PesertaService
     override suspend fun getAllPeserta(): AllPesertaResponse =
         pesertaApiService.getAllPeserta()
 
-    override suspend fun getPesertaById(id: Int): Peserta {
+    override suspend fun getPesertaById(id: String): Peserta {
         return pesertaApiService.getPesertaById(id).data
     }
 
@@ -27,11 +27,11 @@ private val pesertaApiService: PesertaService
         pesertaApiService.insertPeserta(peserta)
     }
 
-    override suspend fun updatePeserta(id: Int, peserta: Peserta) {
+    override suspend fun updatePeserta(id: String, peserta: Peserta) {
         pesertaApiService.updatePeserta(id, peserta)
     }
 
-    override suspend fun deletePeserta(id: Int) {
+    override suspend fun deletePeserta(id: String) {
         try {
             val response = pesertaApiService.deletePeserta(id)
             if (!response.isSuccessful) {

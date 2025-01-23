@@ -7,9 +7,9 @@ import java.io.IOException
 
 interface TransaksiRepository {
     suspend fun getAllTransaksi(): AllTransaksiResponse
-    suspend fun getTransaksiById(id: Int): Transaksi
+    suspend fun getTransaksiById(id: String): Transaksi
     suspend fun insertTransaksi(transaksi: Transaksi)
-    suspend fun deleteTransaksi(id: Int)
+    suspend fun deleteTransaksi(id: String)
 }
 
 class NetworkTransaksiRepository (
@@ -18,7 +18,7 @@ class NetworkTransaksiRepository (
     override suspend fun getAllTransaksi(): AllTransaksiResponse =
         transaksiApiService.getAllTransaksi()
 
-    override suspend fun getTransaksiById(id: Int): Transaksi {
+    override suspend fun getTransaksiById(id: String): Transaksi {
         return transaksiApiService.getTransaksiById(id).data
     }
 
@@ -26,7 +26,7 @@ class NetworkTransaksiRepository (
         transaksiApiService.insertTransaksi(transaksi)
     }
 
-    override suspend fun deleteTransaksi(id: Int) {
+    override suspend fun deleteTransaksi(id: String) {
         try {
             val response = transaksiApiService.deleteTransaksi(id)
             if (!response.isSuccessful) {

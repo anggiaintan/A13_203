@@ -18,7 +18,7 @@ data class EventDetailResponse (
 
 @Serializable
 data class Event (
-    val id_event: Int,
+    val id_event: String,
     val nama_event: String,
     val deskripsi_event: String,
     val tanggal_event: String,

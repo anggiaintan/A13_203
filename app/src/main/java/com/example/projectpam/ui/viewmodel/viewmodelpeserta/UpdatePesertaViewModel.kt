@@ -14,7 +14,7 @@ class UpdatePesertaViewModel (
     private val psrta: PesertaRepository
 ): ViewModel()
 {
-    val id_peserta: Int = checkNotNull(savedStateHandle[DestinasiUpdate.ID_PESERTA])
+    val id_peserta: String = checkNotNull(savedStateHandle[DestinasiUpdate.ID_PESERTA])
     var uiState = mutableStateOf(InsertUiState())
     init {getPeserta()}
     private fun getPeserta(){
@@ -29,7 +29,7 @@ class UpdatePesertaViewModel (
             }
         }
     }
-    fun updatePeserta(id_peserta: Int, peserta: Peserta) {
+    fun updatePeserta(id_peserta: String, peserta: Peserta) {
         viewModelScope.launch {
             try {
                 psrta.updatePeserta(id_peserta, peserta)

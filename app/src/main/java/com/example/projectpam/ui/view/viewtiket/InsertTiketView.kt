@@ -109,9 +109,9 @@ fun FormInput(
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         OutlinedTextField (
-            value = insertUiEvent.id_tiket.toString(),
+            value = insertUiEvent.id_tiket,
             onValueChange = {onValueChange(
-                insertUiEvent.copy(id_tiket = it.toIntOrNull() ?: 0) // Konversi String ke Int
+                insertUiEvent.copy(id_tiket = it)
             )},
             label = { Text("ID Tiket") },
             modifier = Modifier.fillMaxWidth(),
@@ -119,24 +119,24 @@ fun FormInput(
             singleLine = true
         )
         OutlinedTextField (
-            value = insertUiEvent.id_event.toString(),
-            onValueChange = {onValueChange(insertUiEvent.copy(id_event = it.toIntOrNull() ?: 0))},
+            value = insertUiEvent.id_event,
+            onValueChange = {onValueChange(insertUiEvent.copy(id_event = it))},
             label = { Text("ID Event") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
         OutlinedTextField (
-            value = insertUiEvent.id_pengguna.toString(),
-            onValueChange = {onValueChange(insertUiEvent.copy(id_pengguna = it.toIntOrNull() ?: 0))},
+            value = insertUiEvent.id_pengguna,
+            onValueChange = {onValueChange(insertUiEvent.copy(id_pengguna = it))},
             label = { Text("ID Pengguna") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
         OutlinedTextField (
-            value = insertUiEvent.kapasitas_tiket,
-            onValueChange = {onValueChange(insertUiEvent.copy(kapasitas_tiket = it))},
+            value = insertUiEvent.kapasitas_tiket.toString(),
+            onValueChange = {onValueChange(insertUiEvent.copy(kapasitas_tiket = it.toIntOrNull() ?: 0))},
             label = { Text("Kapasitas Tiket") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,

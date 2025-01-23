@@ -42,7 +42,7 @@ object DestinasiDetail : DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailPesertaView (
-    id_peserta: Int,
+    id_peserta: String,
     modifier: Modifier = Modifier,
     viewModel: DetailPesertaViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onEditClick: (String) -> Unit,
@@ -59,7 +59,7 @@ fun DetailPesertaView (
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { onEditClick(id_peserta.toString()) },
+                onClick = { onEditClick(id_peserta) },
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(horizontal = 16.dp)
             ) {
@@ -113,7 +113,7 @@ fun ItemDetailPeserta (peserta: Peserta)
             contentColor = MaterialTheme.colorScheme.onPrimaryContainer
         )
     ){  Column (modifier = Modifier.padding(16.dp)) {
-        ComponentDetailPeserta(judul = "ID Peserta", isinya = peserta.id_peserta.toString())
+        ComponentDetailPeserta(judul = "ID Peserta", isinya = peserta.id_peserta)
         Spacer(modifier = Modifier.padding(4.dp))
         ComponentDetailPeserta(judul = "Nama", isinya = peserta.nama_peserta)
         Spacer(modifier = Modifier.padding(4.dp))

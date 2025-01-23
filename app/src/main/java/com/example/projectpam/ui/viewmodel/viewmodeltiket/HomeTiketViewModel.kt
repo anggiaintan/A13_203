@@ -59,7 +59,7 @@ class HomeTiketViewModel (private val tkt: TiketRepository) : ViewModel() {
         }
     }
 
-    fun editTiket(id: Int, tiket: Tiket) {
+    fun editTiket(id: String, tiket: Tiket) {
         viewModelScope.launch {
             try {
                 tkt.updateTiket(id, tiket)
@@ -72,7 +72,7 @@ class HomeTiketViewModel (private val tkt: TiketRepository) : ViewModel() {
         }
     }
 
-    fun deleteTiket(id: Int) {
+    fun deleteTiket(id: String) {
         viewModelScope.launch {
             try {
                 tkt.deleteTiket(id)
@@ -85,7 +85,7 @@ class HomeTiketViewModel (private val tkt: TiketRepository) : ViewModel() {
         }
     }
 
-    fun getTiketById(id: Int, onResult: (Tiket?) -> Unit) {
+    fun getTiketById(id: String, onResult: (Tiket?) -> Unit) {
         viewModelScope.launch {
             val tiket = try {
                 tkt.getTiketById(id)
@@ -98,7 +98,7 @@ class HomeTiketViewModel (private val tkt: TiketRepository) : ViewModel() {
         }
     }
 
-    fun getJumlahTiketBerdasarkanKapasitas(kapasitas_tiket: String): Int {
+    fun getJumlahTiketBerdasarkanKapasitas(kapasitas_tiket: Int): Int {
         val tiket = (tiketUiState as? HomeUiState.Success)?.tiket ?: emptyList()
         return tiket.count { it.kapasitas_tiket == kapasitas_tiket }
     }

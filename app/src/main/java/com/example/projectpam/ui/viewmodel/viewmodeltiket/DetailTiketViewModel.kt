@@ -20,7 +20,7 @@ class DetailTiketViewModel (
     savedStateHandle: SavedStateHandle,
     private val tkt: TiketRepository
 ): ViewModel() {
-    private val _id_Tiket: Int = checkNotNull(savedStateHandle[DestinasiDetail.ID_TIKET])
+    private val _id_Tiket: String = checkNotNull(savedStateHandle[DestinasiDetail.ID_TIKET])
     private val _detailUiState = MutableStateFlow<DetailUiState>(DetailUiState.Loading)
     val detailUiState: StateFlow<DetailUiState> = _detailUiState
     init { getDetailTiket() }

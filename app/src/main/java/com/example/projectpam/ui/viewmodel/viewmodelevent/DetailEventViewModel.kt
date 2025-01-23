@@ -19,7 +19,7 @@ class DetailEventViewModel (
     savedStateHandle: SavedStateHandle,
     private val evn: EventRepository
 ): ViewModel() {
-    private val _id_Event: Int = checkNotNull(savedStateHandle[DestinasiDetail.ID_EVENT])
+    private val _id_Event: String = checkNotNull(savedStateHandle[DestinasiDetail.ID_EVENT])
     private val _detailUiState = MutableStateFlow<DetailUiState>(DetailUiState.Loading)
     val detailUiState: StateFlow<DetailUiState> = _detailUiState
     init { getDetailEvent() }
