@@ -9,8 +9,8 @@ interface TiketRepository {
     suspend fun getAllTiket(): AllTiketResponse
     suspend fun getTiketById(idTiket: String): Tiket
     suspend fun insertTiket(tiket: Tiket)
-    suspend fun updateTiket(ididTiket: String, tiket: Tiket)
-    suspend fun deleteTiket(ididTiket: String)
+    suspend fun updateTiket(idTiket: String, tiket: Tiket)
+    suspend fun deleteTiket(idTiket: String)
 
     // Fungsi untuk mendapatkan data peserta dan event
     suspend fun getDaftarPeserta(): List<String>
@@ -23,21 +23,21 @@ class NetworkTiketRepository (
     override suspend fun getAllTiket(): AllTiketResponse =
         tiketApiService.getAllTiket()
 
-    override suspend fun getTiketById(ididTiket: String): Tiket {
-        return tiketApiService.getTiketById(ididTiket).data
+    override suspend fun getTiketById(idTiket: String): Tiket {
+        return tiketApiService.getTiketById(idTiket).data
     }
 
     override suspend fun insertTiket(tiket: Tiket) {
         tiketApiService.insertTiket(tiket)
     }
 
-    override suspend fun updateTiket(ididTiket: String, tiket: Tiket) {
-        tiketApiService.updateTiket(ididTiket, tiket)
+    override suspend fun updateTiket(idTiket: String, tiket: Tiket) {
+        tiketApiService.updateTiket(idTiket, tiket)
     }
 
-    override suspend fun deleteTiket(ididTiket: String) {
+    override suspend fun deleteTiket(idTiket: String) {
         try {
-            val response = tiketApiService.deleteTiket(ididTiket)
+            val response = tiketApiService.deleteTiket(idTiket)
             if (!response.isSuccessful) {
                 throw IOException (
                     "Failed to delete tiket. HTTP Status code: " +
