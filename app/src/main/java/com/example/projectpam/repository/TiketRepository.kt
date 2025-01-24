@@ -7,10 +7,10 @@ import okio.IOException
 
 interface TiketRepository {
     suspend fun getAllTiket(): AllTiketResponse
-    suspend fun getTiketById(id: String): Tiket
+    suspend fun getTiketById(idTiket: String): Tiket
     suspend fun insertTiket(tiket: Tiket)
-    suspend fun updateTiket(id: String, tiket: Tiket)
-    suspend fun deleteTiket(id: String)
+    suspend fun updateTiket(ididTiket: String, tiket: Tiket)
+    suspend fun deleteTiket(ididTiket: String)
 
     // Fungsi untuk mendapatkan data peserta dan event
     suspend fun getDaftarPeserta(): List<String>
@@ -23,21 +23,21 @@ class NetworkTiketRepository (
     override suspend fun getAllTiket(): AllTiketResponse =
         tiketApiService.getAllTiket()
 
-    override suspend fun getTiketById(id: String): Tiket {
-        return tiketApiService.getTiketById(id).data
+    override suspend fun getTiketById(ididTiket: String): Tiket {
+        return tiketApiService.getTiketById(ididTiket).data
     }
 
     override suspend fun insertTiket(tiket: Tiket) {
         tiketApiService.insertTiket(tiket)
     }
 
-    override suspend fun updateTiket(id: String, tiket: Tiket) {
-        tiketApiService.updateTiket(id, tiket)
+    override suspend fun updateTiket(ididTiket: String, tiket: Tiket) {
+        tiketApiService.updateTiket(ididTiket, tiket)
     }
 
-    override suspend fun deleteTiket(id: String) {
+    override suspend fun deleteTiket(ididTiket: String) {
         try {
-            val response = tiketApiService.deleteTiket(id)
+            val response = tiketApiService.deleteTiket(ididTiket)
             if (!response.isSuccessful) {
                 throw IOException (
                     "Failed to delete tiket. HTTP Status code: " +

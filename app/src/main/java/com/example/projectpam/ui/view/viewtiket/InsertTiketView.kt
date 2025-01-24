@@ -29,7 +29,7 @@ import com.example.projectpam.ui.viewmodel.viewmodeltiket.InsertUiState
 import kotlinx.coroutines.launch
 
 object DestinasiEntryTiket : DestinasiNavigasi {
-    override val route = "item_entry"
+    override val route = "item_entry_tiket"
     override val titleRes = "Insert Tiket"
 }
 

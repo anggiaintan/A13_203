@@ -47,7 +47,7 @@ import com.example.projectpam.ui.viewmodel.viewmodeltiket.HomeTiketViewModel
 import com.example.projectpam.ui.viewmodel.viewmodeltiket.HomeUiState
 
 object DestinasiHomeTiket : DestinasiNavigasi {
-    override val route = "home"
+    override val route = "homeTiket"
     override val titleRes = "Home Tiket"
 }
 

@@ -29,7 +29,7 @@ import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.InsertUiState
 import kotlinx.coroutines.launch
 
 object DestinasiEntryTransaksi : DestinasiNavigasi {
-    override val route = "item_entry"
+    override val route = "item_entry_transaksi"
     override val titleRes = "Insert Transaksi"
 }
 

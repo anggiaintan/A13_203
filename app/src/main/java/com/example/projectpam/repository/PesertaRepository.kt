@@ -7,10 +7,10 @@ import okio.IOException
 
 interface PesertaRepository {
     suspend fun getAllPeserta(): AllPesertaResponse
-    suspend fun getPesertaById(id: String): Peserta
+    suspend fun getPesertaById(idPeserta: String): Peserta
     suspend fun insertPeserta(peserta: Peserta)
-    suspend fun updatePeserta(id: String, peserta: Peserta)
-    suspend fun deletePeserta(id: String)
+    suspend fun updatePeserta(idPeserta: String, peserta: Peserta)
+    suspend fun deletePeserta(idPeserta: String)
 }
 
 class NetworkPesertaRepository (
@@ -27,13 +27,13 @@ private val pesertaApiService: PesertaService
         pesertaApiService.insertPeserta(peserta)
     }
 
-    override suspend fun updatePeserta(id: String, peserta: Peserta) {
-        pesertaApiService.updatePeserta(id, peserta)
+    override suspend fun updatePeserta(idPeserta: String, peserta: Peserta) {
+        pesertaApiService.updatePeserta(idPeserta, peserta)
     }
 
-    override suspend fun deletePeserta(id: String) {
+    override suspend fun deletePeserta(idPeserta: String) {
         try {
-            val response = pesertaApiService.deletePeserta(id)
+            val response = pesertaApiService.deletePeserta(idPeserta)
             if (!response.isSuccessful) {
                 throw IOException(
                     "Failed to delete peserta. HTTP Status code: " +

@@ -33,7 +33,7 @@ import com.example.projectpam.ui.viewmodel.viewmodelevent.DetailUiState
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 
 object DestinasiDetailEvent : DestinasiNavigasi {
-    override val route = "detail"
+    override val route = "detailEvent"
     const val ID_EVENT = "id_event"
     val routeWithArg = "$route/{$ID_EVENT}"
     override val titleRes = "Detail Event"

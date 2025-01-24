@@ -29,7 +29,7 @@ import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 import kotlinx.coroutines.launch
 
 object DestinasiEntryEvent : DestinasiNavigasi {
-    override val route = "item_entry"
+    override val route = "item_entry_peserta"
     override val titleRes = "Insert Event"
 }
 

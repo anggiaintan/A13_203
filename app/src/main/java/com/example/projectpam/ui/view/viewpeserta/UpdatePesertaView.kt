@@ -20,7 +20,7 @@ import com.example.projectpam.ui.viewmodel.viewmodelpeserta.toPeserta
 import kotlinx.coroutines.launch
 
 object DestinasiUpdatePeserta : DestinasiNavigasi {
-    override val route = "update"
+    override val route = "updatePeserta"
     const val ID_PESERTA = "id_peserta"
     val routesWithArg = "$route/{$ID_PESERTA}"
     override val titleRes = "Update Peserta"

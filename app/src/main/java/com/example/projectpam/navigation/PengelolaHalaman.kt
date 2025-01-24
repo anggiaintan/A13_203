@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.projectpam.ui.view.DestinasiHalamanUtama
+import com.example.projectpam.ui.view.HalamanUtama
 import com.example.projectpam.ui.view.viewevent.DestinasiDetailEvent
 import com.example.projectpam.ui.view.viewevent.DestinasiEntryEvent
 import com.example.projectpam.ui.view.viewevent.DestinasiHomeEvent
@@ -50,6 +51,13 @@ fun PengelolaHalaman(
         startDestination = DestinasiHalamanUtama.route,
         modifier = modifier,
     ) {
+        // Halaman utama
+        composable(DestinasiHalamanUtama.route) {
+            HalamanUtama(
+                navController = navController,
+                modifier = modifier
+            )
+        }
         // Peserta
         composable(DestinasiHomePeserta.route) {
             PesertaHomeScreen(

@@ -47,7 +47,7 @@ import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.HomeTransaksiViewM
 import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.HomeUiState
 
 object DestinasiHomeTransaksi : DestinasiNavigasi {
-    override val route = "home"
+    override val route = "homeTransaksi"
     override val titleRes = "Home Transaksi"
 }
 

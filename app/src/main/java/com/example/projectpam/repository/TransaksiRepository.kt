@@ -7,9 +7,9 @@ import java.io.IOException
 
 interface TransaksiRepository {
     suspend fun getAllTransaksi(): AllTransaksiResponse
-    suspend fun getTransaksiById(id: String): Transaksi
+    suspend fun getTransaksiById(idTransaksi: String): Transaksi
     suspend fun insertTransaksi(transaksi: Transaksi)
-    suspend fun deleteTransaksi(id: String)
+    suspend fun deleteTransaksi(idTransaksi: String)
 }
 
 class NetworkTransaksiRepository (
@@ -18,17 +18,17 @@ class NetworkTransaksiRepository (
     override suspend fun getAllTransaksi(): AllTransaksiResponse =
         transaksiApiService.getAllTransaksi()
 
-    override suspend fun getTransaksiById(id: String): Transaksi {
-        return transaksiApiService.getTransaksiById(id).data
+    override suspend fun getTransaksiById(idTransaksi: String): Transaksi {
+        return transaksiApiService.getTransaksiById(idTransaksi).data
     }
 
     override suspend fun insertTransaksi(transaksi: Transaksi) {
         transaksiApiService.insertTransaksi(transaksi)
     }
 
-    override suspend fun deleteTransaksi(id: String) {
+    override suspend fun deleteTransaksi(idTransaksi: String) {
         try {
-            val response = transaksiApiService.deleteTransaksi(id)
+            val response = transaksiApiService.deleteTransaksi(idTransaksi)
             if (!response.isSuccessful) {
                 throw IOException(
                     "Failed to delete transaksi. HTTP Status code: " +

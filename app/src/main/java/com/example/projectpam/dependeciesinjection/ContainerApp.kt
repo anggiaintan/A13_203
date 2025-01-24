@@ -25,11 +25,37 @@ interface AppContainer {
 }
 
 class ContainerApp: AppContainer {
-    private val baseUrl = "http://192.168.0.106:3000/api/"
+    private val pesertabaseUrl = "http://192.168.0.106:3000/api/peserta"
+    private val eventbaseUrl = "http://192.168.0.106:3000/api/event"
+    private val tiketbaseUrl = "http://192.168.0.106:3000/api/tiket"
+    private val transaksibaseUrl = "http://192.168.0.106:3000/api/transaksi"
+
     private val json = Json { ignoreUnknownKeys = true }
+
+    // pasien
     private val retrofit: Retrofit = Retrofit.Builder()
         .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
-        .baseUrl(baseUrl).build()
+        .baseUrl(pesertabaseUrl)
+        .build()
+
+    // event
+    private val retrofitEvent: Retrofit = Retrofit.Builder()
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+        .baseUrl(eventbaseUrl)
+        .build()
+
+    // tiket
+    private val retrofitTiket: Retrofit = Retrofit.Builder()
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+        .baseUrl(tiketbaseUrl)
+        .build()
+
+    // transaksi
+    private val retrofitTransaksi: Retrofit = Retrofit.Builder()
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+        .baseUrl(transaksibaseUrl)
+        .build()
+
     private val pesertaService: PesertaService by lazy {
         retrofit.create(PesertaService::class.java)
     }

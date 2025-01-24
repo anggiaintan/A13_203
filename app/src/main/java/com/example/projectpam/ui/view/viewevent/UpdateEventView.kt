@@ -20,7 +20,7 @@ import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 import kotlinx.coroutines.launch
 
 object DestinasiUpdateEvent : DestinasiNavigasi {
-    override val route = "update"
+    override val route = "updateEvent"
     const val ID_EVENT = "id_event"
     val routesWithArg = "$route/{$ID_EVENT}"
     override val titleRes = "Update Event"

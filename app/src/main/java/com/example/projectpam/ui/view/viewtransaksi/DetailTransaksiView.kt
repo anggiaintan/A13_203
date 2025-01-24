@@ -34,7 +34,7 @@ import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.DetailUiState
 
 
 object DestinasiDetailTransaksi : DestinasiNavigasi {
-    override val route = "detail"
+    override val route = "detailTransaksi"
     const val ID_TRANSAKSI = "id_transaksi"
     val routeWithArg = "$route/{$ID_TRANSAKSI}"
     override val titleRes = "Detail Transaksi"

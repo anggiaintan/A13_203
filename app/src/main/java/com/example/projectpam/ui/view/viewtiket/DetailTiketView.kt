@@ -33,7 +33,7 @@ import com.example.projectpam.ui.viewmodel.viewmodeltiket.DetailTiketViewModel
 import com.example.projectpam.ui.viewmodel.viewmodeltiket.DetailUiState
 
 object DestinasiDetailTiket : DestinasiNavigasi {
-    override val route = "detail"
+    override val route = "detailTiket"
     const val ID_TIKET = "id_tiket"
     val routeWithArg = "$route/{$ID_TIKET}"
     override val titleRes = "Detail TIKET"

@@ -59,10 +59,10 @@ class HomeTiketViewModel (private val tkt: TiketRepository) : ViewModel() {
         }
     }
 
-    fun editTiket(id: String, tiket: Tiket) {
+    fun editTiket(idTiket: String, tiket: Tiket) {
         viewModelScope.launch {
             try {
-                tkt.updateTiket(id, tiket)
+                tkt.updateTiket(idTiket, tiket)
                 getTiket()
             } catch (e: IOException) {
                 tiketUiState = HomeUiState.Error
@@ -72,10 +72,10 @@ class HomeTiketViewModel (private val tkt: TiketRepository) : ViewModel() {
         }
     }
 
-    fun deleteTiket(id: String) {
+    fun deleteTiket(idTiket: String) {
         viewModelScope.launch {
             try {
-                tkt.deleteTiket(id)
+                tkt.deleteTiket(idTiket)
                 getTiket()
             } catch (e: IOException) {
                 tiketUiState = HomeUiState.Error
@@ -85,10 +85,10 @@ class HomeTiketViewModel (private val tkt: TiketRepository) : ViewModel() {
         }
     }
 
-    fun getTiketById(id: String, onResult: (Tiket?) -> Unit) {
+    fun getTiketById(idTiket: String, onResult: (Tiket?) -> Unit) {
         viewModelScope.launch {
             val tiket = try {
-                tkt.getTiketById(id)
+                tkt.getTiketById(idTiket)
             } catch (e: IOException) {
                 null
             } catch (e: HttpException) {

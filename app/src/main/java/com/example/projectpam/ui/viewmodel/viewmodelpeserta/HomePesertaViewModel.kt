@@ -39,10 +39,10 @@ class HomePesertaViewModel (private val psrta: PesertaRepository) : ViewModel() 
         }
     }
 
-    fun deletePeserta(id: String) {
+    fun deletePeserta(idPeserta: String) {
         viewModelScope.launch {
             try {
-                psrta.deletePeserta(id)
+                psrta.deletePeserta(idPeserta)
             } catch (e: IOException) {
                 HomeUiState.Error
             } catch (e: HttpException) {

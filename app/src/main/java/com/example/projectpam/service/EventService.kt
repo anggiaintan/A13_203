@@ -21,15 +21,15 @@ interface EventService {
     suspend fun getAllEvent(): AllEventResponse
 
     @GET("{id_event}")
-    suspend fun getEventById(@Path("id") id: String): EventDetailResponse
+    suspend fun getEventById(@Path("id_event") idEvent: String): EventDetailResponse
 
     @POST("storeevent")
     suspend fun insertEvent(@Body event: Event)
 
     @PUT("{id_event}")
-    suspend fun updateEvent(@Path("id") id: String, @Body event: Event)
+    suspend fun updateEvent(@Path("id_event") idEvent: String, @Body event: Event)
 
     @DELETE("{id_event}")
-    suspend fun deleteEvent(@Path("id") id: String): retrofit2.Response<Void>
+    suspend fun deleteEvent(@Path("id_event") idEvent: String): retrofit2.Response<Void>
 
 }
