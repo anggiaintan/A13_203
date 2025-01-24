@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.projectpam.model.Event
 import com.example.projectpam.repository.EventRepository
+import com.example.projectpam.ui.view.viewevent.DestinasiUpdateEvent
 import kotlinx.coroutines.launch
 
 class UpdateEventViewModel (
@@ -13,7 +14,7 @@ class UpdateEventViewModel (
     private val evn: EventRepository
 ): ViewModel()
 {
-    val id_event: String = checkNotNull(savedStateHandle[DestinasiUpdate.ID_EVENT])
+    val id_event: String = checkNotNull(savedStateHandle[DestinasiUpdateEvent.ID_EVENT])
     var uiState = mutableStateOf(InsertUiState())
     init {getEvent()}
     private fun getEvent(){

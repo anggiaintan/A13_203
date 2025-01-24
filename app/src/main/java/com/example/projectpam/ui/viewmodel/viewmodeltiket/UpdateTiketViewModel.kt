@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.projectpam.model.Tiket
 import com.example.projectpam.repository.TiketRepository
+import com.example.projectpam.ui.view.viewtiket.DestinasiUpdateTiket
 import kotlinx.coroutines.launch
 
 class UpdateTiketViewModel (
@@ -13,7 +14,7 @@ class UpdateTiketViewModel (
     private val tkt: TiketRepository
 ): ViewModel()
 {
-    val id_tiket: String = checkNotNull(savedStateHandle[DestinasiUpdate.ID_TIKET])
+    val id_tiket: String = checkNotNull(savedStateHandle[DestinasiUpdateTiket.ID_TIKET])
     var uiState = mutableStateOf(InsertUiState())
     init {getTiket()}
     private fun getTiket(){

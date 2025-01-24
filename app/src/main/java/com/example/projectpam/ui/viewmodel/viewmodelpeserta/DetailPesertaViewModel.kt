@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.projectpam.model.Peserta
 import com.example.projectpam.repository.PesertaRepository
-import com.example.projectpam.ui.view.viewpeserta.DestinasiDetail
+import com.example.projectpam.ui.view.viewpeserta.DestinasiDetailPeserta
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -20,7 +20,7 @@ class DetailPesertaViewModel (
     savedStateHandle: SavedStateHandle,
     private val psrta: PesertaRepository
 ): ViewModel() {
-    private val _id_Peserta: String = checkNotNull(savedStateHandle[DestinasiDetail.ID_PESERTA])
+    private val _id_Peserta: String = checkNotNull(savedStateHandle[DestinasiDetailPeserta.ID_PESERTA])
     private val _detailUiState = MutableStateFlow<DetailUiState>(DetailUiState.Loading)
     val detailUiState: StateFlow<DetailUiState> = _detailUiState
     init { getDetailPeserta() }

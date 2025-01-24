@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.projectpam.model.Peserta
 import com.example.projectpam.repository.PesertaRepository
-import com.example.projectpam.ui.view.viewpeserta.DestinasiUpdate
+import com.example.projectpam.ui.view.viewpeserta.DestinasiUpdatePeserta
 import kotlinx.coroutines.launch
 
 class UpdatePesertaViewModel (
@@ -14,7 +14,7 @@ class UpdatePesertaViewModel (
     private val psrta: PesertaRepository
 ): ViewModel()
 {
-    val id_peserta: String = checkNotNull(savedStateHandle[DestinasiUpdate.ID_PESERTA])
+    val id_peserta: String = checkNotNull(savedStateHandle[DestinasiUpdatePeserta.ID_PESERTA])
     var uiState = mutableStateOf(InsertUiState())
     init {getPeserta()}
     private fun getPeserta(){

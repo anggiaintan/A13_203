@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.projectpam.model.Event
 import com.example.projectpam.repository.EventRepository
+import com.example.projectpam.ui.view.viewevent.DestinasiDetailEvent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -19,7 +20,7 @@ class DetailEventViewModel (
     savedStateHandle: SavedStateHandle,
     private val evn: EventRepository
 ): ViewModel() {
-    private val _id_Event: String = checkNotNull(savedStateHandle[DestinasiDetail.ID_EVENT])
+    private val _id_Event: String = checkNotNull(savedStateHandle[DestinasiDetailEvent.ID_EVENT])
     private val _detailUiState = MutableStateFlow<DetailUiState>(DetailUiState.Loading)
     val detailUiState: StateFlow<DetailUiState> = _detailUiState
     init { getDetailEvent() }

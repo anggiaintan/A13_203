@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.projectpam.model.Tiket
 import com.example.projectpam.repository.TiketRepository
-import com.example.projectpam.ui.view.viewtiket.DestinasiDetail
+import com.example.projectpam.ui.view.viewtiket.DestinasiDetailTiket
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -20,7 +20,7 @@ class DetailTiketViewModel (
     savedStateHandle: SavedStateHandle,
     private val tkt: TiketRepository
 ): ViewModel() {
-    private val _id_Tiket: String = checkNotNull(savedStateHandle[DestinasiDetail.ID_TIKET])
+    private val _id_Tiket: String = checkNotNull(savedStateHandle[DestinasiDetailTiket.ID_TIKET])
     private val _detailUiState = MutableStateFlow<DetailUiState>(DetailUiState.Loading)
     val detailUiState: StateFlow<DetailUiState> = _detailUiState
     init { getDetailTiket() }

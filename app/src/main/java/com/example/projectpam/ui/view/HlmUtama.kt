@@ -37,6 +37,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.projectpam.R
+import com.example.projectpam.navigation.DestinasiNavigasi
+import com.example.projectpam.ui.view.viewevent.DestinasiHomeEvent
+import com.example.projectpam.ui.view.viewpeserta.DestinasiHomePeserta
+import com.example.projectpam.ui.view.viewtiket.DestinasiHomeTiket
+import com.example.projectpam.ui.view.viewtransaksi.DestinasiHomeTransaksi
 
 
 val PrimaryColor = Color(0xFF87A9D0)
@@ -44,8 +49,16 @@ val AccentColor = Color(0xFFF8C5D4)
 val BackgroundColor = Color(0xFFEDEDED)
 val TextColor = Color.Black
 
+object DestinasiHalamanUtama : DestinasiNavigasi {
+    override val route = "halaman_utama"
+    const val home = "id_peserta"
+    val routeWithArg = "$route/{$home}"
+    override val titleRes = "Halaman Utama"
+}
+
 @Composable
-fun HalamanUtama(navController: NavController, modifier: Modifier = Modifier) {
+fun HalamanUtama(navController: NavController, modifier: Modifier = Modifier
+) {
     Scaffold(
         modifier = modifier,
         content = { innerPadding ->
@@ -123,33 +136,109 @@ fun HalamanUtama(navController: NavController, modifier: Modifier = Modifier) {
                         )
 
                         // Tombol Menu
-                        MenuButton(
-                            text = "Peserta",
-                            icon = Icons.Default.Person,
-                            navController = navController,
-                            route = "Peserta"
-                        )
+                        Button(
+                            onClick = {
+                                navController.navigate(DestinasiHomePeserta.route)
+                            },
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xFF87A9D0),
+                                contentColor = Color.White
+                            ),
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .height(50.dp)
+                                .fillMaxWidth()
+                        ) {
+                            Text(
+                                text = "Peserta",
+                                fontSize = 18.sp,
+                                modifier = Modifier.weight(1f),
+                                textAlign = TextAlign.Start
+                            )
+                            Icon(
+                                imageVector = Icons.Default.Person,
+                                contentDescription = null,
+                                modifier = Modifier.size(24.dp)
+                            )
+                        }
 
-                        MenuButton(
-                            text = "Event",
-                            icon = Icons.Default.Star,
-                            navController = navController,
-                            route = "Event"
-                        )
+                        Button(
+                            onClick = {
+                                navController.navigate(DestinasiHomeEvent.route)
+                            },
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xFF87A9D0),
+                                contentColor = Color.White
+                            ),
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .height(50.dp)
+                                .fillMaxWidth()
+                        ) {
+                            Text(
+                                text = "Event",
+                                fontSize = 18.sp,
+                                modifier = Modifier.weight(1f),
+                                textAlign = TextAlign.Start
+                            )
+                            Icon(
+                                imageVector = Icons.Default.Star,
+                                contentDescription = null,
+                                modifier = Modifier.size(24.dp)
+                            )
+                        }
 
-                        MenuButton(
-                            text = "Tiket",
-                            icon = Icons.Default.Email,
-                            navController = navController,
-                            route = "Tiket"
-                        )
+                        Button(
+                            onClick = {
+                                navController.navigate(DestinasiHomeTiket.route)
+                            },
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xFF87A9D0),
+                                contentColor = Color.White
+                            ),
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .height(50.dp)
+                                .fillMaxWidth()
+                        ) {
+                            Text(
+                                text = "Tiket",
+                                fontSize = 18.sp,
+                                modifier = Modifier.weight(1f),
+                                textAlign = TextAlign.Start
+                            )
+                            Icon(
+                                imageVector = Icons.Default.Email,
+                                contentDescription = null,
+                                modifier = Modifier.size(24.dp)
+                            )
+                        }
 
-                        MenuButton(
-                            text = "Transaksi",
-                            icon = Icons.Default.ShoppingCart,
-                            navController = navController,
-                            route = "Transaksi"
-                        )
+                        Button(
+                            onClick = {
+                                navController.navigate(DestinasiHomeTransaksi.route)
+                            },
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xFF87A9D0),
+                                contentColor = Color.White
+                            ),
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .height(50.dp)
+                                .fillMaxWidth()
+                        ) {
+                            Text(
+                                text = "Transaksi",
+                                fontSize = 18.sp,
+                                modifier = Modifier.weight(1f),
+                                textAlign = TextAlign.Start
+                            )
+                            Icon(
+                                imageVector = Icons.Default.ShoppingCart,
+                                contentDescription = null,
+                                modifier = Modifier.size(24.dp)
+                            )
+                        }
                     }
                 }
             }
@@ -157,45 +246,3 @@ fun HalamanUtama(navController: NavController, modifier: Modifier = Modifier) {
     )
 }
 
-@Composable
-fun MenuButton(
-    text: String,
-    icon: ImageVector,
-    navController: NavController,
-    route: String,
-    modifier: Modifier = Modifier
-) {
-    Button(
-        onClick = { navController.navigate(route) },
-        colors = ButtonDefaults.buttonColors(
-            containerColor = PrimaryColor,
-            contentColor = Color.White
-        ),
-        modifier = modifier
-            .padding(vertical = 8.dp)
-            .height(70.dp)
-            .fillMaxWidth()
-            .shadow(6.dp, RoundedCornerShape(12.dp)),
-        shape = RoundedCornerShape(12.dp)
-    ) {
-        Row(
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Icon(
-                imageVector = icon,
-                contentDescription = "Ikon $text",
-                tint = Color.White,
-                modifier = Modifier.padding(end = 12.dp)
-            )
-            Text(
-                text = text,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.weight(1f)
-            )
-        }
-    }
-}

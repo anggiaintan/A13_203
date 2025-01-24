@@ -53,7 +53,7 @@ object DestinasiHomeTransaksi : DestinasiNavigasi {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen (
+fun TransaksiHomeScreen (
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
     onDetailClick: (String) -> Unit = {},

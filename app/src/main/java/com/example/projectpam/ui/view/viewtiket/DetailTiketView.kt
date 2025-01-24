@@ -42,7 +42,7 @@ object DestinasiDetailTiket : DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailTiketView (
-    id_tiket: Int,
+    id_tiket: String,
     modifier: Modifier = Modifier,
     viewModel: DetailTiketViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onEditClick: (String) -> Unit,

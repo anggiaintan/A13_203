@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.projectpam.model.Transaksi
 import com.example.projectpam.repository.TransaksiRepository
-import com.example.projectpam.ui.view.viewtransaksi.DestinasiDetail
+import com.example.projectpam.ui.view.viewtransaksi.DestinasiDetailTransaksi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -20,7 +20,7 @@ class DetailTransaksiViewModel (
     savedStateHandle: SavedStateHandle,
     private val trans: TransaksiRepository
 ): ViewModel() {
-    private val _id_Transaksi: String = checkNotNull(savedStateHandle[DestinasiDetail.ID_TRANSAKSI])
+    private val _id_Transaksi: String = checkNotNull(savedStateHandle[DestinasiDetailTransaksi.ID_TRANSAKSI])
     private val _detailUiState = MutableStateFlow<DetailUiState>(DetailUiState.Loading)
     val detailUiState: StateFlow<DetailUiState> = _detailUiState
     init { getDetailTransaksi() }
