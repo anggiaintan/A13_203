@@ -40,8 +40,8 @@ class DetailPesertaViewModel (
     }
 }
 
-fun Peserta.toDetailUiEvent(): InsertUiEvent {
-    return InsertUiEvent (
+fun Peserta.toDetailUiEvent(): InsertPesertaUiEvent {
+    return InsertPesertaUiEvent (
         idPeserta = id_peserta,
         namaPeserta = nama_peserta,
         email = email,

@@ -11,10 +11,10 @@ import kotlinx.coroutines.launch
 
 
 class InsertTransaksiViewModel (private val transaksi: TransaksiRepository): ViewModel() {
-    var uiState by mutableStateOf(InsertUiState())
+    var uiState by mutableStateOf(InsertTransaksiUiState())
         private set
-    fun updateInsertTransaksiState(insertUiEvent: InsertUiEvent) {
-        uiState = InsertUiState (insertUiEvent = insertUiEvent)
+    fun updateInsertTransaksiState(insertUiEvent: InsertTransaksiUiEvent) {
+        uiState = InsertTransaksiUiState (insertUiEvent = insertUiEvent)
     }
 
     suspend fun insertTransaksi() {
@@ -28,11 +28,11 @@ class InsertTransaksiViewModel (private val transaksi: TransaksiRepository): Vie
     }
 }
 
-data class InsertUiState (
-    val insertUiEvent: InsertUiEvent = InsertUiEvent(),
+data class InsertTransaksiUiState (
+    val insertUiEvent: InsertTransaksiUiEvent = InsertTransaksiUiEvent(),
 )
 
-data class InsertUiEvent (
+data class InsertTransaksiUiEvent (
     val idTransaksi: String = "",
     val idTiket: String = "",
     val jumlahTiket: Int = 0,
@@ -40,7 +40,7 @@ data class InsertUiEvent (
     val tanggalTransaksi: String = ""
 )
 
-fun InsertUiEvent.toTransaksi(): Transaksi = Transaksi (
+fun InsertTransaksiUiEvent.toTransaksi(): Transaksi = Transaksi (
     id_transaksi = idTransaksi,
     id_tiket = idTiket,
     jumlah_tiket = jumlahTiket,
@@ -48,11 +48,11 @@ fun InsertUiEvent.toTransaksi(): Transaksi = Transaksi (
     tanggal_transaksi = tanggalTransaksi
 )
 
-fun Transaksi.toUiStateTransaksi(): InsertUiState = InsertUiState (
+fun Transaksi.toUiStateTransaksi(): InsertTransaksiUiState = InsertTransaksiUiState (
     insertUiEvent = toInsertUiEvent()
 )
 
-fun Transaksi.toInsertUiEvent(): InsertUiEvent = InsertUiEvent (
+fun Transaksi.toInsertUiEvent(): InsertTransaksiUiEvent = InsertTransaksiUiEvent (
     idTransaksi = id_transaksi,
     idTiket = id_tiket,
     jumlahTiket = jumlah_tiket,

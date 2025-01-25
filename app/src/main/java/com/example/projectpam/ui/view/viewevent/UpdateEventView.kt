@@ -52,7 +52,7 @@ fun UpdateEventView (
                 .fillMaxSize()
                 .padding(padding)
                 .padding(16.dp)
-        ){ com.example.projectpam.ui.view.viewevent.EntryBody(insertUiState = uiState,
+        ){ com.example.projectpam.ui.view.viewevent.EntryBodyEvent(insertUiState = uiState,
             onEventValueChange  = { updateValue->
                 viewModel.updateEventState(updateValue)
             },

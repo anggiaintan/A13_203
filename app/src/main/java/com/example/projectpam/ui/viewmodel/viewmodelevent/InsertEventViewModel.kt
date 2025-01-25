@@ -10,10 +10,10 @@ import com.example.projectpam.repository.EventRepository
 import kotlinx.coroutines.launch
 
 class InsertEventViewModel (private val event: EventRepository): ViewModel() {
-    var uiState by mutableStateOf(InsertUiState())
+    var uiState by mutableStateOf(InsertEventUiState())
         private set
-    fun updateInsertEventState(insertUiEvent: InsertUiEvent) {
-        uiState = InsertUiState (insertUiEvent = insertUiEvent)
+    fun updateInsertEventState(insertUiEvent: InsertEventUiEvent) {
+        uiState = InsertEventUiState (insertUiEvent = insertUiEvent)
     }
 
     suspend fun insertEvent() {
@@ -27,11 +27,11 @@ class InsertEventViewModel (private val event: EventRepository): ViewModel() {
     }
 }
 
-data class InsertUiState (
-    val insertUiEvent: InsertUiEvent = InsertUiEvent(),
+data class InsertEventUiState (
+    val insertUiEvent: InsertEventUiEvent = InsertEventUiEvent(),
 )
 
-data class InsertUiEvent (
+data class InsertEventUiEvent (
     val id_event: String = "",
     val namaEvent: String = "",
     val deskripsiEvent: String = "",
@@ -39,7 +39,7 @@ data class InsertUiEvent (
     val lokasiEvent: String = ""
 )
 
-fun InsertUiEvent.toEvent(): Event = Event (
+fun InsertEventUiEvent.toEvent(): Event = Event (
     id_event = id_event,
     nama_event = namaEvent,
     deskripsi_event = deskripsiEvent,
@@ -47,11 +47,11 @@ fun InsertUiEvent.toEvent(): Event = Event (
     lokasi_event = lokasiEvent
 )
 
-fun Event.toUiStateEvent(): InsertUiState = InsertUiState (
+fun Event.toUiStateEvent(): InsertEventUiState = InsertEventUiState (
     insertUiEvent = toInsertUiEvent()
 )
 
-fun Event.toInsertUiEvent(): InsertUiEvent = InsertUiEvent (
+fun Event.toInsertUiEvent(): InsertEventUiEvent = InsertEventUiEvent (
     id_event = id_event,
     namaEvent = nama_event,
     deskripsiEvent = deskripsi_event,

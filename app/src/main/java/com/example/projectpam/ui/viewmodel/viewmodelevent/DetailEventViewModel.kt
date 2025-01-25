@@ -40,8 +40,8 @@ class DetailEventViewModel (
     }
 }
 
-fun Event.toDetailUiEvent(): InsertUiEvent {
-    return InsertUiEvent (
+fun Event.toDetailUiEvent(): InsertEventUiEvent {
+    return InsertEventUiEvent (
         id_event = id_event,
         namaEvent = nama_event,
         deskripsiEvent = deskripsi_event,

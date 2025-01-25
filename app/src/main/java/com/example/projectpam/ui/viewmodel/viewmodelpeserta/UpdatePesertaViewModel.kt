@@ -15,7 +15,7 @@ class UpdatePesertaViewModel (
 ): ViewModel()
 {
     val id_peserta: String = checkNotNull(savedStateHandle[DestinasiUpdatePeserta.ID_PESERTA])
-    var uiState = mutableStateOf(InsertUiState())
+    var uiState = mutableStateOf(InsertPesertaUiState())
     init {getPeserta()}
     private fun getPeserta(){
         viewModelScope.launch {
@@ -39,10 +39,10 @@ class UpdatePesertaViewModel (
         }
     }
 
-    fun updatePesertaState(insertUiEvent: InsertUiEvent) {
+    fun updatePesertaState(insertUiEvent: InsertPesertaUiEvent) {
         uiState.value = uiState.value.copy(insertUiEvent = insertUiEvent)
     }
 }
-fun Peserta.toInsertUIEvent(): InsertUiState = InsertUiState (
+fun Peserta.toInsertUIEvent(): InsertPesertaUiState = InsertPesertaUiState (
     insertUiEvent = this.toDetailUiEvent()
 )

@@ -52,7 +52,7 @@ fun UpdatePesertaView (
                 .fillMaxSize()
                 .padding(padding)
                 .padding(16.dp)
-        ){ EntryBody(insertUiState = uiState,
+        ){ EntryBodyPeserta(insertUiState = uiState,
             onPesertaValueChange  = { updateValue->
                 viewModel.updatePesertaState(updateValue)
             },

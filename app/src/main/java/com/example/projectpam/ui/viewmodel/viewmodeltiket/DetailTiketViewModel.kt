@@ -40,8 +40,8 @@ class DetailTiketViewModel (
     }
 }
 
-fun Tiket.toDetailUiEvent(): InsertUiEvent {
-    return InsertUiEvent (
+fun Tiket.toDetailUiEvent(): InsertTiketUiEvent {
+    return InsertTiketUiEvent (
         id_tiket = id_tiket,
         id_event = id_event,
         id_pengguna = id_pengguna,

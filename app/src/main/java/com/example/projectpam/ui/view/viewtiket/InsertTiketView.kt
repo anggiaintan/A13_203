@@ -23,9 +23,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.projectpam.navigation.DestinasiNavigasi
 import com.example.projectpam.ui.customwidget.CostumeTopAppBar
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
+import com.example.projectpam.ui.viewmodel.viewmodeltiket.InsertTiketUiEvent
+import com.example.projectpam.ui.viewmodel.viewmodeltiket.InsertTiketUiState
 import com.example.projectpam.ui.viewmodel.viewmodeltiket.InsertTiketViewModel
-import com.example.projectpam.ui.viewmodel.viewmodeltiket.InsertUiEvent
-import com.example.projectpam.ui.viewmodel.viewmodeltiket.InsertUiState
 import kotlinx.coroutines.launch
 
 object DestinasiEntryTiket : DestinasiNavigasi {
@@ -54,7 +54,7 @@ fun EntryTiketScreen (
         }
     ) {
             innerPadding ->
-        EntryBody(
+        EntryBodyTiket(
             insertUiState = viewModel.uiState,
             onTiketValueChange = viewModel::updateInsertTiketState,
             onSaveClick = {
@@ -71,9 +71,9 @@ fun EntryTiketScreen (
 }
 
 @Composable
-fun EntryBody (
-    insertUiState: InsertUiState,
-    onTiketValueChange: (InsertUiEvent) -> Unit,
+fun EntryBodyTiket (
+    insertUiState: InsertTiketUiState,
+    onTiketValueChange: (InsertTiketUiEvent) -> Unit,
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -81,7 +81,7 @@ fun EntryBody (
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier.padding(12.dp)
     ) {
-        FormInput(
+        FormInputTiket(
             insertUiEvent = insertUiState.insertUiEvent,
             onValueChange = onTiketValueChange,
             modifier = Modifier.fillMaxWidth()
@@ -98,10 +98,10 @@ fun EntryBody (
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FormInput(
-    insertUiEvent: InsertUiEvent,
+fun FormInputTiket(
+    insertUiEvent: InsertTiketUiEvent,
     modifier: Modifier = Modifier,
-    onValueChange: (InsertUiEvent) -> Unit = {},
+    onValueChange: (InsertTiketUiEvent) -> Unit = {},
     enabled: Boolean = true
 ) {
     Column (

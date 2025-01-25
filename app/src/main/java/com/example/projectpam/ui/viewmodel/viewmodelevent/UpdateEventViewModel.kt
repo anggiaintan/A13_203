@@ -15,7 +15,7 @@ class UpdateEventViewModel (
 ): ViewModel()
 {
     val id_event: String = checkNotNull(savedStateHandle[DestinasiUpdateEvent.ID_EVENT])
-    var uiState = mutableStateOf(InsertUiState())
+    var uiState = mutableStateOf(InsertEventUiState())
     init {getEvent()}
     private fun getEvent(){
         viewModelScope.launch {
@@ -39,10 +39,10 @@ class UpdateEventViewModel (
         }
     }
 
-    fun updateEventState(insertUiEvent: InsertUiEvent) {
+    fun updateEventState(insertUiEvent: InsertEventUiEvent) {
         uiState.value = uiState.value.copy(insertUiEvent = insertUiEvent)
     }
 }
-fun Event.toInsertUIEvent(): InsertUiState = InsertUiState (
+fun Event.toInsertUIEvent(): InsertEventUiState = InsertEventUiState (
     insertUiEvent = this.toDetailUiEvent()
 )

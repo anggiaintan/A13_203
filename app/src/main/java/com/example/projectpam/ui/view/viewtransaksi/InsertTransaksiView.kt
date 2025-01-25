@@ -23,9 +23,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.projectpam.navigation.DestinasiNavigasi
 import com.example.projectpam.ui.customwidget.CostumeTopAppBar
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
+import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.InsertTransaksiUiEvent
+import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.InsertTransaksiUiState
 import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.InsertTransaksiViewModel
-import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.InsertUiEvent
-import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.InsertUiState
 import kotlinx.coroutines.launch
 
 object DestinasiEntryTransaksi : DestinasiNavigasi {
@@ -54,7 +54,7 @@ fun EntryTransaksiScreen (
         }
     ) {
             innerPadding ->
-        EntryBody(
+        EntryBodyTransaksi(
             insertUiState = viewModel.uiState,
             onTransaksiValueChange = viewModel::updateInsertTransaksiState,
             onSaveClick = {
@@ -71,9 +71,9 @@ fun EntryTransaksiScreen (
 }
 
 @Composable
-fun EntryBody (
-    insertUiState: InsertUiState,
-    onTransaksiValueChange: (InsertUiEvent) -> Unit,
+fun EntryBodyTransaksi (
+    insertUiState: InsertTransaksiUiState,
+    onTransaksiValueChange: (InsertTransaksiUiEvent) -> Unit,
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -81,7 +81,7 @@ fun EntryBody (
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier.padding(12.dp)
     ) {
-        FormInput(
+        FormInputTransaksi(
             insertUiEvent = insertUiState.insertUiEvent,
             onValueChange = onTransaksiValueChange,
             modifier = Modifier.fillMaxWidth()
@@ -98,10 +98,10 @@ fun EntryBody (
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FormInput(
-    insertUiEvent: InsertUiEvent,
+fun FormInputTransaksi(
+    insertUiEvent: InsertTransaksiUiEvent,
     modifier: Modifier = Modifier,
-    onValueChange: (InsertUiEvent) -> Unit = {},
+    onValueChange: (InsertTransaksiUiEvent) -> Unit = {},
     enabled: Boolean = true
 ) {
     Column (

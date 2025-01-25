@@ -10,10 +10,10 @@ import com.example.projectpam.repository.TiketRepository
 import kotlinx.coroutines.launch
 
 class InsertTiketViewModel (private val tiket: TiketRepository): ViewModel() {
-    var uiState by mutableStateOf(InsertUiState())
+    var uiState by mutableStateOf(InsertTiketUiState())
         private set
-    fun updateInsertTiketState(insertUiEvent: InsertUiEvent) {
-        uiState = InsertUiState (insertUiEvent = insertUiEvent)
+    fun updateInsertTiketState(insertUiEvent: InsertTiketUiEvent) {
+        uiState = InsertTiketUiState (insertUiEvent = insertUiEvent)
     }
 
     suspend fun insertTiket() {
@@ -27,11 +27,11 @@ class InsertTiketViewModel (private val tiket: TiketRepository): ViewModel() {
     }
 }
 
-data class InsertUiState (
-    val insertUiEvent: InsertUiEvent = InsertUiEvent(),
+data class InsertTiketUiState (
+    val insertUiEvent: InsertTiketUiEvent = InsertTiketUiEvent(),
 )
 
-data class InsertUiEvent (
+data class InsertTiketUiEvent (
     val id_tiket: String = "",
     val id_event: String = "",
     val id_pengguna: String = "",
@@ -39,7 +39,7 @@ data class InsertUiEvent (
     val harga_tiket: String = ""
 )
 
-fun InsertUiEvent.toTiket(): Tiket = Tiket (
+fun InsertTiketUiEvent.toTiket(): Tiket = Tiket (
     id_tiket = id_tiket,
     id_event = id_event,
     id_pengguna = id_pengguna,
@@ -47,11 +47,11 @@ fun InsertUiEvent.toTiket(): Tiket = Tiket (
     harga_tiket = harga_tiket
 )
 
-fun Tiket.toUiStateTiket(): InsertUiState = InsertUiState (
+fun Tiket.toUiStateTiket(): InsertTiketUiState = InsertTiketUiState (
     insertUiEvent = toInsertUiEvent()
 )
 
-fun Tiket.toInsertUiEvent(): InsertUiEvent = InsertUiEvent (
+fun Tiket.toInsertUiEvent(): InsertTiketUiEvent = InsertTiketUiEvent (
     id_tiket = id_tiket,
     id_event = id_event,
     id_pengguna = id_pengguna,

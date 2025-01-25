@@ -24,9 +24,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.projectpam.navigation.DestinasiNavigasi
 import com.example.projectpam.ui.customwidget.CostumeTopAppBar
+import com.example.projectpam.ui.viewmodel.viewmodelpeserta.InsertPesertaUiEvent
+import com.example.projectpam.ui.viewmodel.viewmodelpeserta.InsertPesertaUiState
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.InsertPesertaViewModel
-import com.example.projectpam.ui.viewmodel.viewmodelpeserta.InsertUiEvent
-import com.example.projectpam.ui.viewmodel.viewmodelpeserta.InsertUiState
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 import kotlinx.coroutines.launch
 
@@ -56,7 +56,7 @@ fun EntryPesertaScreen (
         }
     ) {
             innerPadding ->
-        EntryBody(
+        EntryBodyPeserta(
             insertUiState = viewModel.uiState,
             onPesertaValueChange = viewModel::updateInsertPesertaState,
             onSaveClick = {
@@ -73,9 +73,9 @@ fun EntryPesertaScreen (
 }
 
 @Composable
-fun EntryBody (
-    insertUiState: InsertUiState,
-    onPesertaValueChange: (InsertUiEvent) -> Unit,
+fun EntryBodyPeserta (
+    insertUiState: InsertPesertaUiState,
+    onPesertaValueChange: (InsertPesertaUiEvent) -> Unit,
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -83,7 +83,7 @@ fun EntryBody (
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier.padding(12.dp)
     ) {
-        FormInput(
+        FormInputPeserta(
             insertUiEvent = insertUiState.insertUiEvent,
             onValueChange = onPesertaValueChange,
             modifier = Modifier.fillMaxWidth()
@@ -100,10 +100,10 @@ fun EntryBody (
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FormInput(
-    insertUiEvent: InsertUiEvent,
+fun FormInputPeserta(
+    insertUiEvent: InsertPesertaUiEvent,
     modifier: Modifier = Modifier,
-    onValueChange: (InsertUiEvent) -> Unit = {},
+    onValueChange: (InsertPesertaUiEvent) -> Unit = {},
     enabled: Boolean = true
 ) {
     Column (

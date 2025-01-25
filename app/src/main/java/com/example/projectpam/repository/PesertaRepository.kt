@@ -19,8 +19,8 @@ private val pesertaApiService: PesertaService
     override suspend fun getAllPeserta(): AllPesertaResponse =
         pesertaApiService.getAllPeserta()
 
-    override suspend fun getPesertaById(id: String): Peserta {
-        return pesertaApiService.getPesertaById(id).data
+    override suspend fun getPesertaById(idPeserta: String): Peserta {
+        return pesertaApiService.getPesertaById(idPeserta).data
     }
 
     override suspend fun insertPeserta(peserta: Peserta) {

@@ -10,10 +10,10 @@ import com.example.projectpam.repository.PesertaRepository
 import kotlinx.coroutines.launch
 
 class InsertPesertaViewModel (private val peserta: PesertaRepository): ViewModel() {
-    var uiState by mutableStateOf(InsertUiState())
+    var uiState by mutableStateOf(InsertPesertaUiState())
         private set
-    fun updateInsertPesertaState(insertUiEvent: InsertUiEvent) {
-        uiState = InsertUiState (insertUiEvent = insertUiEvent)
+    fun updateInsertPesertaState(insertUiEvent: InsertPesertaUiEvent) {
+        uiState = InsertPesertaUiState (insertUiEvent = insertUiEvent)
     }
 
     suspend fun insertPeserta() {
@@ -27,29 +27,29 @@ class InsertPesertaViewModel (private val peserta: PesertaRepository): ViewModel
     }
 }
 
-data class InsertUiState (
-    val insertUiEvent: InsertUiEvent = InsertUiEvent(),
+data class InsertPesertaUiState (
+    val insertUiEvent: InsertPesertaUiEvent = InsertPesertaUiEvent(),
 )
 
-data class InsertUiEvent (
+data class InsertPesertaUiEvent (
     val idPeserta: String = "",
     val namaPeserta: String = "",
     val email: String = "",
     val nomorTelepon: String = ""
 )
 
-fun InsertUiEvent.toPeserta(): Peserta = Peserta (
+fun InsertPesertaUiEvent.toPeserta(): Peserta = Peserta (
     id_peserta = idPeserta,
     nama_peserta = namaPeserta,
     email = email,
     nomor_telepon = nomorTelepon
 )
 
-fun Peserta.toUiStatePeserta(): InsertUiState = InsertUiState (
+fun Peserta.toUiStatePeserta(): InsertPesertaUiState = InsertPesertaUiState (
     insertUiEvent = toInsertUiEvent()
 )
 
-fun Peserta.toInsertUiEvent(): InsertUiEvent = InsertUiEvent (
+fun Peserta.toInsertUiEvent(): InsertPesertaUiEvent = InsertPesertaUiEvent (
     idPeserta = id_peserta,
     namaPeserta = nama_peserta,
     email = email,

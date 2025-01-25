@@ -22,9 +22,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.projectpam.navigation.DestinasiNavigasi
 import com.example.projectpam.ui.customwidget.CostumeTopAppBar
+import com.example.projectpam.ui.viewmodel.viewmodelevent.InsertEventUiEvent
+import com.example.projectpam.ui.viewmodel.viewmodelevent.InsertEventUiState
 import com.example.projectpam.ui.viewmodel.viewmodelevent.InsertEventViewModel
-import com.example.projectpam.ui.viewmodel.viewmodelevent.InsertUiEvent
-import com.example.projectpam.ui.viewmodel.viewmodelevent.InsertUiState
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 import kotlinx.coroutines.launch
 
@@ -54,7 +54,7 @@ fun EntryEventScreen (
         }
     ) {
             innerPadding ->
-        EntryBody(
+        EntryBodyEvent(
             insertUiState = viewModel.uiState,
             onEventValueChange = viewModel::updateInsertEventState,
             onSaveClick = {
@@ -71,9 +71,9 @@ fun EntryEventScreen (
 }
 
 @Composable
-fun EntryBody (
-    insertUiState: InsertUiState,
-    onEventValueChange: (InsertUiEvent) -> Unit,
+fun EntryBodyEvent (
+    insertUiState: InsertEventUiState,
+    onEventValueChange: (InsertEventUiEvent) -> Unit,
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -81,7 +81,7 @@ fun EntryBody (
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier.padding(12.dp)
     ) {
-        FormInput(
+        FormInputEvent(
             insertUiEvent = insertUiState.insertUiEvent,
             onValueChange = onEventValueChange,
             modifier = Modifier.fillMaxWidth()
@@ -98,10 +98,10 @@ fun EntryBody (
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FormInput(
-    insertUiEvent: InsertUiEvent,
+fun FormInputEvent(
+    insertUiEvent: InsertEventUiEvent,
     modifier: Modifier = Modifier,
-    onValueChange: (InsertUiEvent) -> Unit = {},
+    onValueChange: (InsertEventUiEvent) -> Unit = {},
     enabled: Boolean = true
 ) {
     Column (

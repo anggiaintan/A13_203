@@ -52,7 +52,7 @@ fun UpdateTiketView (
                 .fillMaxSize()
                 .padding(padding)
                 .padding(16.dp)
-        ){ EntryBody(insertUiState = uiState,
+        ){ EntryBodyTiket(insertUiState = uiState,
             onTiketValueChange  = { updateValue->
                 viewModel.updateTiketState(updateValue)
             },

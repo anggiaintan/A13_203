@@ -15,7 +15,7 @@ class UpdateTiketViewModel (
 ): ViewModel()
 {
     val id_tiket: String = checkNotNull(savedStateHandle[DestinasiUpdateTiket.ID_TIKET])
-    var uiState = mutableStateOf(InsertUiState())
+    var uiState = mutableStateOf(InsertTiketUiState())
     init {getTiket()}
     private fun getTiket(){
         viewModelScope.launch {
@@ -39,10 +39,10 @@ class UpdateTiketViewModel (
         }
     }
 
-    fun updateTiketState(insertUiEvent: InsertUiEvent) {
+    fun updateTiketState(insertUiEvent: InsertTiketUiEvent) {
         uiState.value = uiState.value.copy(insertUiEvent = insertUiEvent)
     }
 }
-fun Tiket.toInsertUIEvent(): InsertUiState = InsertUiState (
+fun Tiket.toInsertUIEvent(): InsertTiketUiState = InsertTiketUiState (
     insertUiEvent = this.toDetailUiEvent()
 )

@@ -40,8 +40,8 @@ class DetailTransaksiViewModel (
     }
 }
 
-fun Transaksi.toDetailUiEvent(): InsertUiEvent {
-    return InsertUiEvent (
+fun Transaksi.toDetailUiEvent(): InsertTransaksiUiEvent {
+    return InsertTransaksiUiEvent (
         idTransaksi = id_transaksi,
         idTiket = id_tiket,
         jumlahTiket = jumlah_tiket,
