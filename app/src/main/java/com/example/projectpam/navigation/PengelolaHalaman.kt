@@ -63,7 +63,9 @@ fun PengelolaHalaman(
             PesertaHomeScreen(
                 navigateToItemEntry = { navController.navigate(DestinasiEntryPeserta.route) },
                 onDetailClick = { idPeserta ->
-                    navController.navigate("${DestinasiDetailPeserta.route}/$idPeserta")
+                    navController.navigate("${DestinasiDetailPeserta.route}/$idPeserta") {
+                        popUpTo(DestinasiHomePeserta.route) { inclusive = true }
+                    }
                 }
             )
         }
@@ -76,7 +78,7 @@ fun PengelolaHalaman(
         ) { backStackEntry ->
             val idPeserta = backStackEntry.arguments?.getString(DestinasiDetailPeserta.ID_PESERTA).orEmpty()
             DetailPesertaView(
-                id_peserta = idPeserta,
+                idPeserta = idPeserta,
                 navigateBack = { navController.popBackStack() },
                 onEditClick = {
                     navController.navigate("${DestinasiUpdatePeserta.route}/$idPeserta")
@@ -96,7 +98,9 @@ fun PengelolaHalaman(
             EventHomeScreen(
                 navigateToItemEntry = { navController.navigate(DestinasiEntryEvent.route) },
                 onDetailClick = { idEvent ->
-                    navController.navigate("${DestinasiDetailEvent.route}/$idEvent")
+                    navController.navigate("${DestinasiDetailEvent.route}/$idEvent") {
+                        popUpTo(DestinasiHomeEvent.route) { inclusive = true }
+                    }
                 }
             )
         }
@@ -109,7 +113,7 @@ fun PengelolaHalaman(
         ) { backStackEntry ->
             val idEvent = backStackEntry.arguments?.getString(DestinasiDetailEvent.ID_EVENT).orEmpty()
             DetailEventView(
-                id_event = idEvent,
+                idEvent = idEvent,
                 navigateBack = { navController.popBackStack() },
                 onEditClick = {
                     navController.navigate("${DestinasiUpdateEvent.route}/$idEvent")
@@ -129,7 +133,9 @@ fun PengelolaHalaman(
             TiketHomeScreen(
                 navigateToItemEntry = { navController.navigate(DestinasiEntryTiket.route) },
                 onDetailClick = { idTiket ->
-                    navController.navigate("${DestinasiDetailTiket.route}/$idTiket")
+                    navController.navigate("${DestinasiDetailTiket.route}/$idTiket") {
+                        popUpTo(DestinasiHomeTiket.route) { inclusive = true }
+                    }
                 }
             )
         }
@@ -142,7 +148,7 @@ fun PengelolaHalaman(
         ) { backStackEntry ->
             val idTiket = backStackEntry.arguments?.getString(DestinasiDetailTiket.ID_TIKET).orEmpty()
             DetailTiketView(
-                id_tiket = idTiket,
+                idTiket = idTiket,
                 navigateBack = { navController.popBackStack() },
                 onEditClick = {
                     navController.navigate("${DestinasiUpdateTiket.route}/$idTiket")
@@ -162,7 +168,9 @@ fun PengelolaHalaman(
             TransaksiHomeScreen(
                 navigateToItemEntry = { navController.navigate(DestinasiEntryTransaksi.route) },
                 onDetailClick = { idTransaksi ->
-                    navController.navigate("${DestinasiDetailTransaksi.route}/$idTransaksi")
+                    navController.navigate("${DestinasiDetailTransaksi.route}/$idTransaksi") {
+                        popUpTo(DestinasiHomeTransaksi.route) { inclusive = true }
+                    }
                 }
             )
         }
@@ -175,7 +183,7 @@ fun PengelolaHalaman(
         ) { backStackEntry ->
             val idTransaksi = backStackEntry.arguments?.getString(DestinasiDetailTransaksi.ID_TRANSAKSI).orEmpty()
             DetailTransaksiView(
-                id_transaksi = idTransaksi,
+                idTransaksi = idTransaksi,
                 navigateBack = { navController.popBackStack() }
             )
         } */

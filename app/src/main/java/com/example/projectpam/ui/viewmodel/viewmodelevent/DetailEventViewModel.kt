@@ -20,7 +20,7 @@ class DetailEventViewModel (
     savedStateHandle: SavedStateHandle,
     private val evn: EventRepository
 ): ViewModel() {
-    private val _id_Event: String = checkNotNull(savedStateHandle[DestinasiDetailEvent.ID_EVENT])
+    private val _idEvent: String = checkNotNull(savedStateHandle[DestinasiDetailEvent.ID_EVENT])
     private val _detailUiState = MutableStateFlow<DetailUiState>(DetailUiState.Loading)
     val detailUiState: StateFlow<DetailUiState> = _detailUiState
     init { getDetailEvent() }
@@ -28,7 +28,7 @@ class DetailEventViewModel (
         viewModelScope.launch {
             try {
                 _detailUiState.value = DetailUiState.Loading
-                val event = evn.getEventById(_id_Event)
+                val event = evn.getEventById(_idEvent)
                 if (event != null) {
                     _detailUiState.value = DetailUiState.Success(event)
                 } else {
@@ -43,9 +43,9 @@ class DetailEventViewModel (
 fun Event.toDetailUiEvent(): InsertUiEvent {
     return InsertUiEvent (
         id_event = id_event,
-        nama_event = nama_event,
-        deskripsi_event = deskripsi_event,
-        tanggal_event = tanggal_event,
-        lokasi_event = lokasi_event
+        namaEvent = nama_event,
+        deskripsiEvent = deskripsi_event,
+        tanggalEvent = tanggal_event,
+        lokasiEvent = lokasi_event
     )
 }

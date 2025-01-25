@@ -42,7 +42,7 @@ object DestinasiDetailPeserta : DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailPesertaView (
-    id_peserta: String,
+    idPeserta: String,
     modifier: Modifier = Modifier,
     viewModel: DetailPesertaViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onEditClick: (String) -> Unit,
@@ -59,7 +59,7 @@ fun DetailPesertaView (
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { onEditClick(id_peserta) },
+                onClick = { onEditClick(idPeserta) },
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(horizontal = 16.dp)
             ) {

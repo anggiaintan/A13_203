@@ -33,18 +33,18 @@ data class InsertUiState (
 
 data class InsertUiEvent (
     val id_event: String = "",
-    val nama_event: String = "",
-    val deskripsi_event: String = "",
-    val tanggal_event: String = "",
-    val lokasi_event: String = ""
+    val namaEvent: String = "",
+    val deskripsiEvent: String = "",
+    val tanggalEvent: String = "",
+    val lokasiEvent: String = ""
 )
 
 fun InsertUiEvent.toEvent(): Event = Event (
     id_event = id_event,
-    nama_event = nama_event,
-    deskripsi_event = deskripsi_event,
-    tanggal_event = tanggal_event,
-    lokasi_event = lokasi_event
+    nama_event = namaEvent,
+    deskripsi_event = deskripsiEvent,
+    tanggal_event = tanggalEvent,
+    lokasi_event = lokasiEvent
 )
 
 fun Event.toUiStateEvent(): InsertUiState = InsertUiState (
@@ -53,8 +53,8 @@ fun Event.toUiStateEvent(): InsertUiState = InsertUiState (
 
 fun Event.toInsertUiEvent(): InsertUiEvent = InsertUiEvent (
     id_event = id_event,
-    nama_event = nama_event,
-    deskripsi_event = deskripsi_event,
-    tanggal_event = tanggal_event,
-    lokasi_event = lokasi_event
+    namaEvent = nama_event,
+    deskripsiEvent = deskripsi_event,
+    tanggalEvent = tanggal_event,
+    lokasiEvent = lokasi_event
 )

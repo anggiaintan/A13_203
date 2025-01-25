@@ -119,32 +119,32 @@ fun FormInput(
             singleLine = true
         )
         OutlinedTextField (
-            value = insertUiEvent.nama_event,
-            onValueChange = {onValueChange(insertUiEvent.copy(nama_event = it))},
+            value = insertUiEvent.namaEvent,
+            onValueChange = {onValueChange(insertUiEvent.copy(namaEvent = it))},
             label = { Text("Nama Event") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
         OutlinedTextField (
-            value = insertUiEvent.deskripsi_event,
-            onValueChange = {onValueChange(insertUiEvent.copy(deskripsi_event = it))},
+            value = insertUiEvent.deskripsiEvent,
+            onValueChange = {onValueChange(insertUiEvent.copy(deskripsiEvent = it))},
             label = { Text("Deskripsi Event") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
         OutlinedTextField (
-            value = insertUiEvent.tanggal_event,
-            onValueChange = {onValueChange(insertUiEvent.copy(tanggal_event = it))},
+            value = insertUiEvent.tanggalEvent,
+            onValueChange = {onValueChange(insertUiEvent.copy(tanggalEvent = it))},
             label = { Text("Tanggal Event") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
         OutlinedTextField (
-            value = insertUiEvent.lokasi_event,
-            onValueChange = {onValueChange(insertUiEvent.copy(lokasi_event = it))},
+            value = insertUiEvent.lokasiEvent,
+            onValueChange = {onValueChange(insertUiEvent.copy(lokasiEvent = it))},
             label = { Text("Lokasi Event") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,

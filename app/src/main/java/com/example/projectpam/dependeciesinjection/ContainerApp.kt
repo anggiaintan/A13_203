@@ -25,14 +25,14 @@ interface AppContainer {
 }
 
 class ContainerApp: AppContainer {
-    private val pesertabaseUrl = "http://192.168.0.106:3000/api/peserta"
-    private val eventbaseUrl = "http://192.168.0.106:3000/api/event"
-    private val tiketbaseUrl = "http://192.168.0.106:3000/api/tiket"
-    private val transaksibaseUrl = "http://192.168.0.106:3000/api/transaksi"
+    private val pesertabaseUrl = "http://192.168.0.106:3000/"
+    private val eventbaseUrl = "http://192.168.0.106:3000/"
+    private val tiketbaseUrl = "http://192.168.0.106:3000/"
+    private val transaksibaseUrl = "http://192.168.0.106:3000/"
 
     private val json = Json { ignoreUnknownKeys = true }
 
-    // pasien
+    // peserta
     private val retrofit: Retrofit = Retrofit.Builder()
         .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
         .baseUrl(pesertabaseUrl)

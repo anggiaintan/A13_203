@@ -20,7 +20,7 @@ class DetailTransaksiViewModel (
     savedStateHandle: SavedStateHandle,
     private val trans: TransaksiRepository
 ): ViewModel() {
-    private val _id_Transaksi: String = checkNotNull(savedStateHandle[DestinasiDetailTransaksi.ID_TRANSAKSI])
+    private val _idTransaksi: String = checkNotNull(savedStateHandle[DestinasiDetailTransaksi.ID_TRANSAKSI])
     private val _detailUiState = MutableStateFlow<DetailUiState>(DetailUiState.Loading)
     val detailUiState: StateFlow<DetailUiState> = _detailUiState
     init { getDetailTransaksi() }
@@ -28,7 +28,7 @@ class DetailTransaksiViewModel (
         viewModelScope.launch {
             try {
                 _detailUiState.value = DetailUiState.Loading
-                val transaksi = trans.getTransaksiById(_id_Transaksi)
+                val transaksi = trans.getTransaksiById(_idTransaksi)
                 if (transaksi != null) {
                     _detailUiState.value = DetailUiState.Success(transaksi)
                 } else {
@@ -42,10 +42,10 @@ class DetailTransaksiViewModel (
 
 fun Transaksi.toDetailUiEvent(): InsertUiEvent {
     return InsertUiEvent (
-        id_transaksi = id_transaksi,
-        id_tiket = id_tiket,
-        jumlah_tiket = jumlah_tiket,
-        jumlah_pembayaran = jumlah_pembayaran,
-        tanggal_transaksi = tanggal_transaksi
+        idTransaksi = id_transaksi,
+        idTiket = id_tiket,
+        jumlahTiket = jumlah_tiket,
+        jumlahPembayaran = jumlah_pembayaran,
+        tanggalTransaksi = tanggal_transaksi
     )
 }

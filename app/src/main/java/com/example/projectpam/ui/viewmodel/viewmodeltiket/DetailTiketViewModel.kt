@@ -20,7 +20,7 @@ class DetailTiketViewModel (
     savedStateHandle: SavedStateHandle,
     private val tkt: TiketRepository
 ): ViewModel() {
-    private val _id_Tiket: String = checkNotNull(savedStateHandle[DestinasiDetailTiket.ID_TIKET])
+    private val _idTiket: String = checkNotNull(savedStateHandle[DestinasiDetailTiket.ID_TIKET])
     private val _detailUiState = MutableStateFlow<DetailUiState>(DetailUiState.Loading)
     val detailUiState: StateFlow<DetailUiState> = _detailUiState
     init { getDetailTiket() }
@@ -28,7 +28,7 @@ class DetailTiketViewModel (
         viewModelScope.launch {
             try {
                 _detailUiState.value = DetailUiState.Loading
-                val tiket = tkt.getTiketById(_id_Tiket)
+                val tiket = tkt.getTiketById(_idTiket)
                 if (tiket != null) {
                     _detailUiState.value = DetailUiState.Success(tiket)
                 } else {

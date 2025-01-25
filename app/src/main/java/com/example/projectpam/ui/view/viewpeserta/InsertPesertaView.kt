@@ -111,9 +111,9 @@ fun FormInput(
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         OutlinedTextField (
-            value = insertUiEvent.id_peserta,
+            value = insertUiEvent.idPeserta,
             onValueChange = {onValueChange(
-                insertUiEvent.copy(id_peserta = it)
+                insertUiEvent.copy(idPeserta = it)
             )},
             label = { Text("ID Peserta") },
             modifier = Modifier.fillMaxWidth(),
@@ -121,8 +121,8 @@ fun FormInput(
             singleLine = true
         )
         OutlinedTextField (
-            value = insertUiEvent.nama_peserta,
-            onValueChange = {onValueChange(insertUiEvent.copy(nama_peserta = it))},
+            value = insertUiEvent.namaPeserta,
+            onValueChange = {onValueChange(insertUiEvent.copy(namaPeserta = it))},
             label = { Text("Nama Peserta") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
@@ -137,8 +137,8 @@ fun FormInput(
             singleLine = true
         )
         OutlinedTextField (
-            value = insertUiEvent.nomor_telepon,
-            onValueChange = {onValueChange(insertUiEvent.copy(nomor_telepon = it))},
+            value = insertUiEvent.nomorTelepon,
+            onValueChange = {onValueChange(insertUiEvent.copy(nomorTelepon = it))},
             label = { Text("Nomor telepon") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,

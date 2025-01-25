@@ -32,17 +32,17 @@ data class InsertUiState (
 )
 
 data class InsertUiEvent (
-    val id_peserta: String = "",
-    val nama_peserta: String = "",
+    val idPeserta: String = "",
+    val namaPeserta: String = "",
     val email: String = "",
-    val nomor_telepon: String = ""
+    val nomorTelepon: String = ""
 )
 
 fun InsertUiEvent.toPeserta(): Peserta = Peserta (
-    id_peserta = id_peserta,
-    nama_peserta = nama_peserta,
+    id_peserta = idPeserta,
+    nama_peserta = namaPeserta,
     email = email,
-    nomor_telepon = nomor_telepon
+    nomor_telepon = nomorTelepon
 )
 
 fun Peserta.toUiStatePeserta(): InsertUiState = InsertUiState (
@@ -50,8 +50,8 @@ fun Peserta.toUiStatePeserta(): InsertUiState = InsertUiState (
 )
 
 fun Peserta.toInsertUiEvent(): InsertUiEvent = InsertUiEvent (
-    id_peserta = id_peserta,
-    nama_peserta = nama_peserta,
+    idPeserta = id_peserta,
+    namaPeserta = nama_peserta,
     email = email,
-    nomor_telepon = nomor_telepon
+    nomorTelepon = nomor_telepon
 )

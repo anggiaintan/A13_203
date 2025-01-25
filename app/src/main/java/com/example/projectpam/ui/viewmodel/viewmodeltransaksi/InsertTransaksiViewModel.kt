@@ -33,19 +33,19 @@ data class InsertUiState (
 )
 
 data class InsertUiEvent (
-    val id_transaksi: String = "",
-    val id_tiket: String = "",
-    val jumlah_tiket: Int = 0,
-    val jumlah_pembayaran: String = "",
-    val tanggal_transaksi: String = ""
+    val idTransaksi: String = "",
+    val idTiket: String = "",
+    val jumlahTiket: Int = 0,
+    val jumlahPembayaran: String = "",
+    val tanggalTransaksi: String = ""
 )
 
 fun InsertUiEvent.toTransaksi(): Transaksi = Transaksi (
-    id_transaksi = id_transaksi,
-    id_tiket = id_tiket,
-    jumlah_tiket = jumlah_tiket,
-    jumlah_pembayaran = jumlah_pembayaran,
-    tanggal_transaksi = tanggal_transaksi
+    id_transaksi = idTransaksi,
+    id_tiket = idTiket,
+    jumlah_tiket = jumlahTiket,
+    jumlah_pembayaran = jumlahPembayaran,
+    tanggal_transaksi = tanggalTransaksi
 )
 
 fun Transaksi.toUiStateTransaksi(): InsertUiState = InsertUiState (
@@ -53,9 +53,9 @@ fun Transaksi.toUiStateTransaksi(): InsertUiState = InsertUiState (
 )
 
 fun Transaksi.toInsertUiEvent(): InsertUiEvent = InsertUiEvent (
-    id_transaksi = id_transaksi,
-    id_tiket = id_tiket,
-    jumlah_tiket = jumlah_tiket,
-    jumlah_pembayaran = jumlah_pembayaran,
-    tanggal_transaksi = tanggal_transaksi
+    idTransaksi = id_transaksi,
+    idTiket = id_tiket,
+    jumlahTiket = jumlah_tiket,
+    jumlahPembayaran = jumlah_pembayaran,
+    tanggalTransaksi = tanggal_transaksi
 )

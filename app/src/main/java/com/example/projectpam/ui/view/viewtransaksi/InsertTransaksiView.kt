@@ -109,9 +109,9 @@ fun FormInput(
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         OutlinedTextField (
-            value = insertUiEvent.id_transaksi,
+            value = insertUiEvent.idTransaksi,
             onValueChange = {onValueChange(
-                insertUiEvent.copy(id_transaksi = it)
+                insertUiEvent.copy(idTransaksi = it)
             )},
             label = { Text("ID Transaksi") },
             modifier = Modifier.fillMaxWidth(),
@@ -119,24 +119,24 @@ fun FormInput(
             singleLine = true
         )
         OutlinedTextField (
-            value = insertUiEvent.id_tiket,
-            onValueChange = {onValueChange(insertUiEvent.copy(id_tiket = it))},
+            value = insertUiEvent.idTiket,
+            onValueChange = {onValueChange(insertUiEvent.copy(idTiket = it))},
             label = { Text("ID Tiket") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
         OutlinedTextField (
-            value = insertUiEvent.jumlah_tiket.toString(),
-            onValueChange = {onValueChange(insertUiEvent.copy(jumlah_tiket = it.toIntOrNull() ?: 0))},
+            value = insertUiEvent.jumlahTiket.toString(),
+            onValueChange = {onValueChange(insertUiEvent.copy(jumlahTiket = it.toIntOrNull() ?: 0))},
             label = { Text("Jumlah tiket") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
         OutlinedTextField (
-            value = insertUiEvent.jumlah_pembayaran,
-            onValueChange = {onValueChange(insertUiEvent.copy(jumlah_pembayaran = it))},
+            value = insertUiEvent.jumlahPembayaran,
+            onValueChange = {onValueChange(insertUiEvent.copy(jumlahPembayaran = it))},
             label = { Text("Jumlah pembayaran") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,

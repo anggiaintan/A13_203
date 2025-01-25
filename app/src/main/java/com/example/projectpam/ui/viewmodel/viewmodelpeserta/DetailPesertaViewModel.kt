@@ -20,7 +20,7 @@ class DetailPesertaViewModel (
     savedStateHandle: SavedStateHandle,
     private val psrta: PesertaRepository
 ): ViewModel() {
-    private val _id_Peserta: String = checkNotNull(savedStateHandle[DestinasiDetailPeserta.ID_PESERTA])
+    private val _idPeserta: String = checkNotNull(savedStateHandle[DestinasiDetailPeserta.ID_PESERTA])
     private val _detailUiState = MutableStateFlow<DetailUiState>(DetailUiState.Loading)
     val detailUiState: StateFlow<DetailUiState> = _detailUiState
     init { getDetailPeserta() }
@@ -28,7 +28,7 @@ class DetailPesertaViewModel (
         viewModelScope.launch {
             try {
                 _detailUiState.value = DetailUiState.Loading
-                val peserta = psrta.getPesertaById(_id_Peserta)
+                val peserta = psrta.getPesertaById(_idPeserta)
                 if (peserta != null) {
                     _detailUiState.value = DetailUiState.Success(peserta)
                 } else {
@@ -42,9 +42,9 @@ class DetailPesertaViewModel (
 
 fun Peserta.toDetailUiEvent(): InsertUiEvent {
     return InsertUiEvent (
-        id_peserta = id_peserta,
-        nama_peserta = nama_peserta,
+        idPeserta = id_peserta,
+        namaPeserta = nama_peserta,
         email = email,
-        nomor_telepon = nomor_telepon
+        nomorTelepon = nomor_telepon
     )
 }
