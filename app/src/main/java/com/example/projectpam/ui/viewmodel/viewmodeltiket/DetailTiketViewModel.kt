@@ -44,7 +44,7 @@ fun Tiket.toDetailUiEvent(): InsertTiketUiEvent {
     return InsertTiketUiEvent (
         id_tiket = id_tiket,
         id_event = id_event,
-        id_pengguna = id_pengguna,
+        id_peserta = id_peserta,
         kapasitas_tiket = kapasitas_tiket,
         harga_tiket = harga_tiket
     )

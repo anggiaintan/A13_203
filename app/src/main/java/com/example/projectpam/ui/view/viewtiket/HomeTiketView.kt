@@ -215,7 +215,7 @@ fun TiketCard (
                 )
             }
             Text (
-                text = tiket.id_pengguna,
+                text = tiket.id_peserta,
                 style = MaterialTheme.typography.titleMedium
             )
             Text (

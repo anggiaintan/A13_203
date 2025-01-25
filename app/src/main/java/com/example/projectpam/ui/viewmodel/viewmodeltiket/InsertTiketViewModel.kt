@@ -34,7 +34,7 @@ data class InsertTiketUiState (
 data class InsertTiketUiEvent (
     val id_tiket: String = "",
     val id_event: String = "",
-    val id_pengguna: String = "",
+    val id_peserta: String = "",
     val kapasitas_tiket: Int = 0,
     val harga_tiket: String = ""
 )
@@ -42,7 +42,7 @@ data class InsertTiketUiEvent (
 fun InsertTiketUiEvent.toTiket(): Tiket = Tiket (
     id_tiket = id_tiket,
     id_event = id_event,
-    id_pengguna = id_pengguna,
+    id_peserta = id_peserta,
     kapasitas_tiket = kapasitas_tiket,
     harga_tiket = harga_tiket
 )
@@ -54,7 +54,7 @@ fun Tiket.toUiStateTiket(): InsertTiketUiState = InsertTiketUiState (
 fun Tiket.toInsertUiEvent(): InsertTiketUiEvent = InsertTiketUiEvent (
     id_tiket = id_tiket,
     id_event = id_event,
-    id_pengguna = id_pengguna,
+    id_peserta = id_peserta,
     kapasitas_tiket = kapasitas_tiket,
     harga_tiket = harga_tiket
 )
