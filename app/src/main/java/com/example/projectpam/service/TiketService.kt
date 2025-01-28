@@ -32,9 +32,9 @@ interface TiketService {
     @DELETE("api/tiket/{id_tiket}")
     suspend fun deleteTiket(@Path("id_tiket") idTiket: String): retrofit2.Response<Void>
 
-    @GET("api/tiket/getpeserta")
+    @GET("api/tiket/peserta/all")
     suspend fun getPesertaList(): List<String>
 
-    @GET("api/tiket/getevent")
+    @GET("api/tiket/event/all")
     suspend fun getEventList(): List<String>
 }
