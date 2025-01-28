@@ -28,8 +28,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.projectpam.model.Event
 import com.example.projectpam.navigation.DestinasiNavigasi
 import com.example.projectpam.ui.customwidget.CostumeTopAppBar
+import com.example.projectpam.ui.viewmodel.viewmodelevent.DetailEventUiState
 import com.example.projectpam.ui.viewmodel.viewmodelevent.DetailEventViewModel
-import com.example.projectpam.ui.viewmodel.viewmodelevent.DetailUiState
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 
 object DestinasiDetailEvent : DestinasiNavigasi {
@@ -42,7 +42,7 @@ object DestinasiDetailEvent : DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailEventView (
-    idEvent: String,
+    id_event: String,
     modifier: Modifier = Modifier,
     viewModel: DetailEventViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onEditClick: (String) -> Unit,
@@ -59,7 +59,7 @@ fun DetailEventView (
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { onEditClick(idEvent) },
+                onClick = { onEditClick(id_event) },
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(horizontal = 16.dp)
             ) {
@@ -80,21 +80,21 @@ fun DetailEventView (
 @Composable
 fun BodyDetailEvent (
     modifier: Modifier = Modifier,
-    detailUiState: DetailUiState,
+    detailUiState: DetailEventUiState,
     retryAction: () -> Unit = {}
 ) {
     when (detailUiState) {
-        is DetailUiState.Loading -> {
+        is DetailEventUiState.Loading -> {
             OnLoading(modifier = modifier.fillMaxSize())
         }
-        is DetailUiState.Success->{
+        is DetailEventUiState.Success->{
             Column (
                 modifier = modifier
                     .fillMaxSize()
                     .padding(16.dp)
             ){  ItemDetailEvent (event = detailUiState.event) }
         }
-        is DetailUiState.Error->{
+        is DetailEventUiState.Error->{
             OnError(
                 retryAction = retryAction,
                 modifier = modifier.fillMaxSize()

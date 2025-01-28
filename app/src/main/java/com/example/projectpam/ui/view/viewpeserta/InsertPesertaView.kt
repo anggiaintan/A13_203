@@ -84,7 +84,7 @@ fun EntryBodyPeserta (
         modifier = modifier.padding(12.dp)
     ) {
         FormInputPeserta(
-            insertUiEvent = insertUiState.insertUiEvent,
+            insertPesertaUiEvent = insertUiState.insertUiEvent,
             onValueChange = onPesertaValueChange,
             modifier = Modifier.fillMaxWidth()
         )
@@ -101,7 +101,7 @@ fun EntryBodyPeserta (
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FormInputPeserta(
-    insertUiEvent: InsertPesertaUiEvent,
+    insertPesertaUiEvent: InsertPesertaUiEvent,
     modifier: Modifier = Modifier,
     onValueChange: (InsertPesertaUiEvent) -> Unit = {},
     enabled: Boolean = true
@@ -111,9 +111,9 @@ fun FormInputPeserta(
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         OutlinedTextField (
-            value = insertUiEvent.idPeserta,
+            value = insertPesertaUiEvent.id_peserta,
             onValueChange = {onValueChange(
-                insertUiEvent.copy(idPeserta = it)
+                insertPesertaUiEvent.copy(id_peserta = it)
             )},
             label = { Text("ID Peserta") },
             modifier = Modifier.fillMaxWidth(),
@@ -121,24 +121,25 @@ fun FormInputPeserta(
             singleLine = true
         )
         OutlinedTextField (
-            value = insertUiEvent.namaPeserta,
-            onValueChange = {onValueChange(insertUiEvent.copy(namaPeserta = it))},
+            value = insertPesertaUiEvent.nama_peserta,
+            onValueChange = {onValueChange(insertPesertaUiEvent.copy(nama_peserta = it))},
             label = { Text("Nama Peserta") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
         OutlinedTextField (
-            value = insertUiEvent.email,
-            onValueChange = {onValueChange(insertUiEvent.copy(email = it))},
+            value = insertPesertaUiEvent.email,
+            onValueChange = {onValueChange(insertPesertaUiEvent.copy(email = it))},
             label = { Text("Email") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
         OutlinedTextField (
-            value = insertUiEvent.nomorTelepon,
-            onValueChange = {onValueChange(insertUiEvent.copy(nomorTelepon = it))},
+            value = insertPesertaUiEvent.nomor_telepon,
+            onValueChange = {onValueChange(insertPesertaUiEvent.copy(nomor_telepon = it))},
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             label = { Text("Nomor telepon") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,

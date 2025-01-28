@@ -29,7 +29,7 @@ import com.example.projectpam.model.Peserta
 import com.example.projectpam.navigation.DestinasiNavigasi
 import com.example.projectpam.ui.customwidget.CostumeTopAppBar
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.DetailPesertaViewModel
-import com.example.projectpam.ui.viewmodel.viewmodelpeserta.DetailUiState
+import com.example.projectpam.ui.viewmodel.viewmodelpeserta.DetailPesertaUiState
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 
 object DestinasiDetailPeserta : DestinasiNavigasi {
@@ -42,7 +42,7 @@ object DestinasiDetailPeserta : DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailPesertaView (
-    idPeserta: String,
+    id_peserta: String,
     modifier: Modifier = Modifier,
     viewModel: DetailPesertaViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onEditClick: (String) -> Unit,
@@ -59,7 +59,7 @@ fun DetailPesertaView (
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { onEditClick(idPeserta) },
+                onClick = { onEditClick(id_peserta) },
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(horizontal = 16.dp)
             ) {
@@ -80,21 +80,21 @@ fun DetailPesertaView (
 @Composable
 fun BodyDetailPeserta (
     modifier: Modifier = Modifier,
-    detailUiState: DetailUiState,
+    detailUiState: DetailPesertaUiState,
     retryAction: () -> Unit = {}
 ) {
     when (detailUiState) {
-        is DetailUiState.Loading -> {
+        is DetailPesertaUiState.Loading -> {
             OnLoading(modifier = modifier.fillMaxSize())
         }
-        is DetailUiState.Success->{
+        is DetailPesertaUiState.Success->{
             Column (
                 modifier = modifier
                     .fillMaxSize()
                     .padding(16.dp)
             ){  ItemDetailPeserta (peserta = detailUiState.peserta) }
         }
-        is DetailUiState.Error->{
+        is DetailPesertaUiState.Error->{
             OnError(retryAction = retryAction, modifier = modifier.fillMaxSize())
         }
         else -> {

@@ -11,14 +11,14 @@ import com.example.projectpam.repository.EventRepository
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-sealed class HomeUiState {
-    data class Success(val event: List<Event>) : HomeUiState()
-    object Error : HomeUiState()
-    object Loading : HomeUiState()
+sealed class HomeEventUiState {
+    data class Success(val event: List<Event>) : HomeEventUiState()
+    object Error : HomeEventUiState()
+    object Loading : HomeEventUiState()
 }
 
-class HomeEventViewModel (private val evn: EventRepository) : ViewModel() {
-    var eventUiState: HomeUiState by mutableStateOf(HomeUiState.Loading)
+class HomeEventViewModel (private val eventRepository: EventRepository) : ViewModel() {
+    var eventUIState: HomeEventUiState by mutableStateOf(HomeEventUiState.Loading)
         private set
 
     init {
@@ -27,25 +27,25 @@ class HomeEventViewModel (private val evn: EventRepository) : ViewModel() {
 
     fun getEvent() {
         viewModelScope.launch {
-            eventUiState = HomeUiState.Loading
-            eventUiState = try {
-                HomeUiState.Success(evn.getAllEvent().data)
+            eventUIState = HomeEventUiState.Loading
+            eventUIState = try {
+                HomeEventUiState.Success(eventRepository.getAllEvent().data)
             } catch (e: IOException) {
-                HomeUiState.Error
+                HomeEventUiState.Error
             } catch (e: HttpException) {
-                HomeUiState.Error
+                HomeEventUiState.Error
             }
         }
     }
 
-    fun deleteEvent(idEvent: String) {
+    fun deleteEvent(id_event: String) {
         viewModelScope.launch {
             try {
-                evn.deleteEvent(idEvent)
+                eventRepository.deleteEvent(id_event)
             } catch (e: IOException) {
-                HomeUiState.Error
+                eventUIState = HomeEventUiState.Error
             } catch (e: HttpException) {
-                HomeUiState.Error
+                eventUIState = HomeEventUiState.Error
             }
         }
     }

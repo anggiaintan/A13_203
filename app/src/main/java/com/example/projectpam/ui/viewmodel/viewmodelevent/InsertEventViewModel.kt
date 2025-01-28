@@ -1,4 +1,4 @@
-package com.example.projectpam.ui.viewmodel.viewmodelevent
+package com.example.projectpam.ui.viewmodel.viewmodelpeserta
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -9,17 +9,17 @@ import com.example.projectpam.model.Event
 import com.example.projectpam.repository.EventRepository
 import kotlinx.coroutines.launch
 
-class InsertEventViewModel (private val event: EventRepository): ViewModel() {
+class InsertEventViewModel (private val eventRepository: EventRepository): ViewModel() {
     var uiState by mutableStateOf(InsertEventUiState())
         private set
-    fun updateInsertEventState(insertUiEvent: InsertEventUiEvent) {
+    fun updateInsertEvnState(insertUiEvent: InsertEventUiEvent) {
         uiState = InsertEventUiState (insertUiEvent = insertUiEvent)
     }
 
-    suspend fun insertEvent() {
+    suspend fun insertEvn() {
         viewModelScope.launch {
             try {
-                event.insertEvent(uiState.insertUiEvent.toEvent())
+                eventRepository.insertEvent(uiState.insertUiEvent.toEvn())
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -33,28 +33,28 @@ data class InsertEventUiState (
 
 data class InsertEventUiEvent (
     val id_event: String = "",
-    val namaEvent: String = "",
-    val deskripsiEvent: String = "",
-    val tanggalEvent: String = "",
-    val lokasiEvent: String = ""
+    val nama_event: String = "",
+    val deskripsi_event: String = "",
+    val tanggal_event: String = "",
+    val lokasi_event: String = ""
 )
 
-fun InsertEventUiEvent.toEvent(): Event = Event (
+fun InsertEventUiEvent.toEvn(): Event = Event (
     id_event = id_event,
-    nama_event = namaEvent,
-    deskripsi_event = deskripsiEvent,
-    tanggal_event = tanggalEvent,
-    lokasi_event = lokasiEvent
+    nama_event = nama_event,
+    deskripsi_event = deskripsi_event,
+    tanggal_event = tanggal_event,
+    lokasi_event = lokasi_event
 )
 
 fun Event.toUiStateEvent(): InsertEventUiState = InsertEventUiState (
-    insertUiEvent = toInsertUiEvent()
+    insertUiEvent = toInsertEventUiEvent()
 )
 
-fun Event.toInsertUiEvent(): InsertEventUiEvent = InsertEventUiEvent (
+fun Event.toInsertEventUiEvent(): InsertEventUiEvent = InsertEventUiEvent (
     id_event = id_event,
-    namaEvent = nama_event,
-    deskripsiEvent = deskripsi_event,
-    tanggalEvent = tanggal_event,
-    lokasiEvent = lokasi_event
+    nama_event = nama_event,
+    deskripsi_event = deskripsi_event,
+    tanggal_event = tanggal_event,
+    lokasi_event = lokasi_event
 )

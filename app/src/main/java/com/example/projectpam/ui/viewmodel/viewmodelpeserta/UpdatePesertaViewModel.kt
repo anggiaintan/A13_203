@@ -22,7 +22,7 @@ class UpdatePesertaViewModel (
             try {
                 val peserta = psrta.getPesertaById(id_peserta)
                 peserta?.let {
-                    uiState.value = it.toInsertUIEvent()
+                    uiState.value = it.toUiStatePeserta()
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

@@ -44,7 +44,7 @@ import com.example.projectpam.navigation.DestinasiNavigasi
 import com.example.projectpam.ui.customwidget.CostumeTopAppBar
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.HomeTransaksiViewModel
-import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.HomeUiState
+import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.HomeTransaksiUiState
 
 object DestinasiHomeTransaksi : DestinasiNavigasi {
     override val route = "homeTransaksi"
@@ -57,6 +57,7 @@ fun TransaksiHomeScreen (
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
     onDetailClick: (String) -> Unit = {},
+    navigateBack: () -> Unit,
     viewModel: HomeTransaksiViewModel = viewModel( factory = PenyediaViewModel.Factory)
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -65,7 +66,8 @@ fun TransaksiHomeScreen (
         topBar = {
             CostumeTopAppBar (
                 title = DestinasiHomeTransaksi.titleRes,
-                canNavigateBack = false,
+                canNavigateBack = true,
+                navigateUp = navigateBack,
                 scrollBehavior = scrollBehavior,
                 onRefresh = {
                     viewModel.getTransaksi()
@@ -84,7 +86,7 @@ fun TransaksiHomeScreen (
             }
         },
     ) { innerPadding ->
-        HomeStatus (
+        HomeStatusTransaksi (
             homeUiState = viewModel.transaksiUiState,
             retryAction = {viewModel.getTransaksi()}, modifier = Modifier.padding(innerPadding),
             onDetailClick = onDetailClick, onDeleteClick = {
@@ -96,16 +98,16 @@ fun TransaksiHomeScreen (
 }
 
 @Composable
-fun HomeStatus (
-    homeUiState: HomeUiState,
+fun HomeStatusTransaksi (
+    homeUiState: HomeTransaksiUiState,
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
     onDeleteClick: (Transaksi) -> Unit = {},
     onDetailClick: (String) -> Unit = {},
 ) {
     when (homeUiState) {
-        is HomeUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
-        is HomeUiState.Success ->
+        is HomeTransaksiUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
+        is HomeTransaksiUiState.Success ->
             if (homeUiState.transaksi.isEmpty()) {
                 return Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(text = "Tidak ada data transaksi")
@@ -123,7 +125,7 @@ fun HomeStatus (
                 )
 
             }
-        is HomeUiState.Error -> OnError(retryAction = retryAction, modifier = modifier.fillMaxSize())
+        is HomeTransaksiUiState.Error -> OnError(retryAction = retryAction, modifier = modifier.fillMaxSize())
     }
 }
 
@@ -252,25 +254,4 @@ fun TransaksiCard (
             )
         }
     }
-}
-@Composable
-private fun DeleteConfirmationDialog(
-    onDeleteConfirm: () -> Unit,
-    onDeleteCancel: () -> Unit,
-    modifier: Modifier = Modifier
-){
-    AlertDialog(onDismissRequest = {},
-        title = { Text("Delete Data") },
-        text = { Text("Apakah anda yakin ingin menghapus data ini?") },
-        modifier = modifier,
-        dismissButton = {
-            TextButton(onClick = onDeleteCancel) {
-                Text("Cancel")
-            }
-        },
-        confirmButton = {
-            TextButton(onClick = onDeleteConfirm) {
-                Text("Yes")
-            }
-        })
 }

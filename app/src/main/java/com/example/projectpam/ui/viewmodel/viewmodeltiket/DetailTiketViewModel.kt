@@ -10,10 +10,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-sealed class DetailUiState {
-    data class Success (val tiket: Tiket) : DetailUiState()
-    object Error : DetailUiState()
-    object Loading : DetailUiState()
+sealed class DetailTiketUiState {
+    data class Success (val tiket: Tiket) : DetailTiketUiState()
+    object Error : DetailTiketUiState()
+    object Loading : DetailTiketUiState()
 }
 
 class DetailTiketViewModel (
@@ -21,20 +21,20 @@ class DetailTiketViewModel (
     private val tkt: TiketRepository
 ): ViewModel() {
     private val _idTiket: String = checkNotNull(savedStateHandle[DestinasiDetailTiket.ID_TIKET])
-    private val _detailUiState = MutableStateFlow<DetailUiState>(DetailUiState.Loading)
-    val detailUiState: StateFlow<DetailUiState> = _detailUiState
+    private val _detailUiState = MutableStateFlow<DetailTiketUiState>(DetailTiketUiState.Loading)
+    val detailUiState: StateFlow<DetailTiketUiState> = _detailUiState
     init { getDetailTiket() }
     fun getDetailTiket() {
         viewModelScope.launch {
             try {
-                _detailUiState.value = DetailUiState.Loading
+                _detailUiState.value = DetailTiketUiState.Loading
                 val tiket = tkt.getTiketById(_idTiket)
                 if (tiket != null) {
-                    _detailUiState.value = DetailUiState.Success(tiket)
+                    _detailUiState.value = DetailTiketUiState.Success(tiket)
                 } else {
-                    _detailUiState.value = DetailUiState.Error }
+                    _detailUiState.value = DetailTiketUiState.Error }
             } catch (e: Exception) {
-                _detailUiState.value = DetailUiState.Error
+                _detailUiState.value = DetailTiketUiState.Error
             }
         }
     }

@@ -30,7 +30,7 @@ import com.example.projectpam.navigation.DestinasiNavigasi
 import com.example.projectpam.ui.customwidget.CostumeTopAppBar
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 import com.example.projectpam.ui.viewmodel.viewmodeltiket.DetailTiketViewModel
-import com.example.projectpam.ui.viewmodel.viewmodeltiket.DetailUiState
+import com.example.projectpam.ui.viewmodel.viewmodeltiket.DetailTiketUiState
 
 object DestinasiDetailTiket : DestinasiNavigasi {
     override val route = "detailTiket"
@@ -80,21 +80,21 @@ fun DetailTiketView (
 @Composable
 fun BodyDetailTiket (
     modifier: Modifier = Modifier,
-    detailUiState: DetailUiState,
+    detailUiState: DetailTiketUiState,
     retryAction: () -> Unit = {}
 ) {
     when (detailUiState) {
-        is DetailUiState.Loading -> {
+        is DetailTiketUiState.Loading -> {
             OnLoading(modifier = modifier.fillMaxSize())
         }
-        is DetailUiState.Success->{
+        is DetailTiketUiState.Success->{
             Column (
                 modifier = modifier
                     .fillMaxSize()
                     .padding(16.dp)
             ){  ItemDetailTiket (tiket = detailUiState.tiket) }
         }
-        is DetailUiState.Error->{
+        is DetailTiketUiState.Error->{
             OnError(
                 retryAction = retryAction,
                 modifier = modifier.fillMaxSize()

@@ -9,17 +9,17 @@ import com.example.projectpam.model.Tiket
 import com.example.projectpam.repository.TiketRepository
 import kotlinx.coroutines.launch
 
-class InsertTiketViewModel (private val tiket: TiketRepository): ViewModel() {
+class InsertTiketViewModel (private val tiketRepository: TiketRepository): ViewModel() {
     var uiState by mutableStateOf(InsertTiketUiState())
         private set
-    fun updateInsertTiketState(insertUiEvent: InsertTiketUiEvent) {
-        uiState = InsertTiketUiState (insertUiEvent = insertUiEvent)
+    fun updateInsertTiketState(insertEventUiEvent: InsertTiketUiEvent) {
+        uiState = InsertTiketUiState (insertUiEvent = insertEventUiEvent)
     }
 
     suspend fun insertTiket() {
         viewModelScope.launch {
             try {
-                tiket.insertTiket(uiState.insertUiEvent.toTiket())
+                tiketRepository.insertTiket(uiState.insertUiEvent.toTiket())
             } catch (e: Exception) {
                 e.printStackTrace()
             }

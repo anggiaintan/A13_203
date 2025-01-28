@@ -43,7 +43,7 @@ import com.example.projectpam.model.Event
 import com.example.projectpam.navigation.DestinasiNavigasi
 import com.example.projectpam.ui.customwidget.CostumeTopAppBar
 import com.example.projectpam.ui.viewmodel.viewmodelevent.HomeEventViewModel
-import com.example.projectpam.ui.viewmodel.viewmodelevent.HomeUiState
+import com.example.projectpam.ui.viewmodel.viewmodelevent.HomeEventUiState
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 
 object DestinasiHomeEvent : DestinasiNavigasi {
@@ -57,7 +57,8 @@ fun EventHomeScreen (
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
     onDetailClick: (String) -> Unit = {},
-    viewModel: HomeEventViewModel = viewModel( factory = PenyediaViewModel.Factory)
+    navigateBack: () -> Unit,
+    viewModel: HomeEventViewModel = viewModel( factory = PenyediaViewModel.Factory) // ViewModel untuk mendapatkan data
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold (
@@ -65,7 +66,8 @@ fun EventHomeScreen (
         topBar = {
             CostumeTopAppBar (
                 title = DestinasiHomeEvent.titleRes,
-                canNavigateBack = false,
+                canNavigateBack = true,
+                navigateUp = navigateBack,
                 scrollBehavior = scrollBehavior,
                 onRefresh = {
                     viewModel.getEvent()
@@ -85,8 +87,8 @@ fun EventHomeScreen (
         },
     ) { innerPadding ->
         HomeStatus (
-            homeUiState = viewModel.eventUiState,
-            retryAction = {viewModel.getEvent()}, modifier = Modifier.padding(innerPadding),
+            homeUiState = viewModel.eventUIState, // State UI untuk data event
+            retryAction = {viewModel.getEvent()}, modifier = Modifier.padding(innerPadding), // Aksi retry untuk mendapatkan ulang data
             onDetailClick = onDetailClick, onDeleteClick = {
                 viewModel.deleteEvent(it.id_event)
                 viewModel.getEvent()
@@ -95,17 +97,18 @@ fun EventHomeScreen (
     }
 }
 
+// Fungsi untuk menampilkan status data event (Loading, Success, atau Error)
 @Composable
 fun HomeStatus (
-    homeUiState: HomeUiState,
+    homeUiState: HomeEventUiState,
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
     onDeleteClick: (Event) -> Unit = {},
     onDetailClick: (String) -> Unit = {},
 ) {
     when (homeUiState) {
-        is HomeUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
-        is HomeUiState.Success ->
+        is HomeEventUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
+        is HomeEventUiState.Success ->
             if (homeUiState.event.isEmpty()) {
                 return Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(text = "Tidak ada data event")
@@ -123,7 +126,7 @@ fun HomeStatus (
                 )
 
             }
-        is HomeUiState.Error -> OnError(retryAction = retryAction, modifier = modifier.fillMaxSize())
+        is HomeEventUiState.Error -> OnError(retryAction = retryAction, modifier = modifier.fillMaxSize())
     }
 }
 
@@ -153,6 +156,7 @@ fun OnError(retryAction:() -> Unit, modifier: Modifier = Modifier) {
     }
 }
 
+// Fungsi untuk menampilkan daftar event dalam bentuk kartu
 @Composable
 fun EventLayout (
     event: List<Event>,
@@ -179,6 +183,7 @@ fun EventLayout (
     }
 }
 
+// Fungsi untuk menampilkan kartu individu untuk setiap event
 @Composable
 fun EventCard (
     event: Event,
@@ -228,25 +233,4 @@ fun EventCard (
             )
         }
     }
-}
-@Composable
-private fun DeleteConfirmationDialog(
-    onDeleteConfirm: () -> Unit,
-    onDeleteCancel: () -> Unit,
-    modifier: Modifier = Modifier
-){
-    AlertDialog(onDismissRequest = {},
-        title = { Text("Delete Data") },
-        text = { Text("Apakah anda yakin ingin menghapus data ini?") },
-        modifier = modifier,
-        dismissButton = {
-            TextButton(onClick = onDeleteCancel) {
-                Text("Cancel")
-            }
-        },
-        confirmButton = {
-            TextButton(onClick = onDeleteConfirm) {
-                Text("Yes")
-            }
-        })
 }

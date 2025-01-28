@@ -9,7 +9,6 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.projectpam.TiketkuApplication
 import com.example.projectpam.ui.viewmodel.viewmodelevent.DetailEventViewModel
 import com.example.projectpam.ui.viewmodel.viewmodelevent.HomeEventViewModel
-import com.example.projectpam.ui.viewmodel.viewmodelevent.InsertEventViewModel
 import com.example.projectpam.ui.viewmodel.viewmodelevent.UpdateEventViewModel
 import com.example.projectpam.ui.viewmodel.viewmodeltiket.DetailTiketViewModel
 import com.example.projectpam.ui.viewmodel.viewmodeltiket.HomeTiketViewModel
@@ -34,7 +33,7 @@ object PenyediaViewModel {
         initializer { DetailTiketViewModel (createSavedStateHandle(), aplikasiTiketku().container.tiketRepository) }
         initializer { UpdateTiketViewModel (createSavedStateHandle(), aplikasiTiketku().container.tiketRepository) }
         initializer { HomeTransaksiViewModel (aplikasiTiketku().container.transaksiRepository) }
-        initializer { InsertTransaksiViewModel (aplikasiTiketku().container.transaksiRepository) }
+       // initializer { InsertTransaksiViewModel (aplikasiTiketku().container.transaksiRepository) }
         initializer { DetailTransaksiViewModel (createSavedStateHandle(), aplikasiTiketku().container.transaksiRepository) }
     }
 }

@@ -10,10 +10,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-sealed class DetailUiState {
-    data class Success (val peserta: Peserta) : DetailUiState()
-    object Error : DetailUiState()
-    object Loading : DetailUiState()
+sealed class DetailPesertaUiState {
+    data class Success (val peserta: Peserta) : DetailPesertaUiState()
+    object Error : DetailPesertaUiState()
+    object Loading : DetailPesertaUiState()
 }
 
 class DetailPesertaViewModel (
@@ -21,20 +21,20 @@ class DetailPesertaViewModel (
     private val psrta: PesertaRepository
 ): ViewModel() {
     private val _idPeserta: String = checkNotNull(savedStateHandle[DestinasiDetailPeserta.ID_PESERTA])
-    private val _detailUiState = MutableStateFlow<DetailUiState>(DetailUiState.Loading)
-    val detailUiState: StateFlow<DetailUiState> = _detailUiState
+    private val _detailUiState = MutableStateFlow<DetailPesertaUiState>(DetailPesertaUiState.Loading)
+    val detailUiState: StateFlow<DetailPesertaUiState> = _detailUiState
     init { getDetailPeserta() }
     fun getDetailPeserta() {
         viewModelScope.launch {
             try {
-                _detailUiState.value = DetailUiState.Loading
+                _detailUiState.value = DetailPesertaUiState.Loading
                 val peserta = psrta.getPesertaById(_idPeserta)
                 if (peserta != null) {
-                    _detailUiState.value = DetailUiState.Success(peserta)
+                    _detailUiState.value = DetailPesertaUiState.Success(peserta)
                 } else {
-                    _detailUiState.value = DetailUiState.Error }
+                    _detailUiState.value = DetailPesertaUiState.Error }
                 } catch (e: Exception) {
-                    _detailUiState.value = DetailUiState.Error
+                    _detailUiState.value = DetailPesertaUiState.Error
             }
         }
     }
@@ -42,9 +42,9 @@ class DetailPesertaViewModel (
 
 fun Peserta.toDetailUiEvent(): InsertPesertaUiEvent {
     return InsertPesertaUiEvent (
-        idPeserta = id_peserta,
-        namaPeserta = nama_peserta,
+        id_peserta = id_peserta,
+        nama_peserta = nama_peserta,
         email = email,
-        nomorTelepon = nomor_telepon
+        nomor_telepon = nomor_telepon
     )
 }

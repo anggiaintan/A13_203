@@ -17,15 +17,15 @@ interface TransaksiService {
         "Content-Type: application/json",
     )
 
-    @GET("/gettransaksi")
+    @GET("api/transaksi/gettransaksi")
     suspend fun getAllTransaksi(): AllTransaksiResponse
 
-    @GET("{id_transaksi}")
+    @GET("api/transaksi/{id_transaksi}")
     suspend fun getTransaksiById(@Path("id_transaksi") idTransaksi: String): TransaksiDetailResponse
 
-    @POST("storetransaksi")
+    @POST("api/transaksi/storetransaksi")
     suspend fun insertTransaksi(@Body transaksi: Transaksi)
 
-    @DELETE("{id_transaksi}")
+    @DELETE("api/transaksi/{id_transaksi}")
     suspend fun deleteTransaksi(@Path("id_transaksi") idTransaksi: String): retrofit2.Response<Void>
 }

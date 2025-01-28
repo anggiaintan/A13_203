@@ -11,14 +11,14 @@ import com.example.projectpam.repository.TiketRepository
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-sealed class HomeUiState {
-    data class Success(val tiket: List<Tiket>) : HomeUiState()
-    object Error : HomeUiState()
-    object Loading : HomeUiState()
+sealed class HomeTiketUiState {
+    data class Success(val tiket: List<Tiket>) : HomeTiketUiState()
+    object Error : HomeTiketUiState()
+    object Loading : HomeTiketUiState()
 }
 
 class HomeTiketViewModel (private val tkt: TiketRepository) : ViewModel() {
-    var tiketUiState: HomeUiState by mutableStateOf(HomeUiState.Loading)
+    var tiketUiState: HomeTiketUiState by mutableStateOf(HomeTiketUiState.Loading)
         private set
 
     var daftarPeserta: List<String> by mutableStateOf(emptyList())
@@ -35,13 +35,13 @@ class HomeTiketViewModel (private val tkt: TiketRepository) : ViewModel() {
 
     fun getTiket() {
         viewModelScope.launch {
-            tiketUiState = HomeUiState.Loading
+            tiketUiState = HomeTiketUiState.Loading
             tiketUiState = try {
-                HomeUiState.Success(tkt.getAllTiket().data)
+                HomeTiketUiState.Success(tkt.getAllTiket().data)
             } catch (e: IOException) {
-                HomeUiState.Error
+                HomeTiketUiState.Error
             } catch (e: HttpException) {
-                HomeUiState.Error
+                HomeTiketUiState.Error
             }
         }
     }
@@ -52,43 +52,43 @@ class HomeTiketViewModel (private val tkt: TiketRepository) : ViewModel() {
                 tkt.insertTiket(tiket)
                 getTiket()
             } catch (e: IOException) {
-                tiketUiState = HomeUiState.Error
+                tiketUiState = HomeTiketUiState.Error
             } catch (e: HttpException) {
-                tiketUiState = HomeUiState.Error
+                tiketUiState = HomeTiketUiState.Error
             }
         }
     }
 
-    fun editTiket(idTiket: String, tiket: Tiket) {
+    fun editTiket(id_tiket: String, tiket: Tiket) {
         viewModelScope.launch {
             try {
-                tkt.updateTiket(idTiket, tiket)
+                tkt.updateTiket(id_tiket, tiket)
                 getTiket()
             } catch (e: IOException) {
-                tiketUiState = HomeUiState.Error
+                tiketUiState = HomeTiketUiState.Error
             } catch (e: HttpException) {
-                tiketUiState = HomeUiState.Error
+                tiketUiState = HomeTiketUiState.Error
             }
         }
     }
 
-    fun deleteTiket(idTiket: String) {
+    fun deleteTiket(id_tiket: String) {
         viewModelScope.launch {
             try {
-                tkt.deleteTiket(idTiket)
+                tkt.deleteTiket(id_tiket)
                 getTiket()
             } catch (e: IOException) {
-                tiketUiState = HomeUiState.Error
+                tiketUiState = HomeTiketUiState.Error
             } catch (e: HttpException) {
-                tiketUiState = HomeUiState.Error
+                tiketUiState = HomeTiketUiState.Error
             }
         }
     }
 
-    fun getTiketById(idTiket: String, onResult: (Tiket?) -> Unit) {
+    fun getTiketById(id_tiket: String, onResult: (Tiket?) -> Unit) {
         viewModelScope.launch {
             val tiket = try {
-                tkt.getTiketById(idTiket)
+                tkt.getTiketById(id_tiket)
             } catch (e: IOException) {
                 null
             } catch (e: HttpException) {
@@ -99,7 +99,7 @@ class HomeTiketViewModel (private val tkt: TiketRepository) : ViewModel() {
     }
 
     fun getJumlahTiketBerdasarkanKapasitas(kapasitas_tiket: Int): Int {
-        val tiket = (tiketUiState as? HomeUiState.Success)?.tiket ?: emptyList()
+        val tiket = (tiketUiState as? HomeTiketUiState.Success)?.tiket ?: emptyList()
         return tiket.count { it.kapasitas_tiket == kapasitas_tiket }
     }
 

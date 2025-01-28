@@ -12,14 +12,14 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 
 
-sealed class HomeUiState {
-    data class Success(val transaksi: List<Transaksi>) : HomeUiState()
-    object Error : HomeUiState()
-    object Loading : HomeUiState()
+sealed class HomeTransaksiUiState {
+    data class Success(val transaksi: List<Transaksi>) : HomeTransaksiUiState()
+    object Error : HomeTransaksiUiState()
+    object Loading : HomeTransaksiUiState()
 }
 
 class HomeTransaksiViewModel (private val trans: TransaksiRepository) : ViewModel() {
-    var transaksiUiState: HomeUiState by mutableStateOf(HomeUiState.Loading)
+    var transaksiUiState: HomeTransaksiUiState by mutableStateOf(HomeTransaksiUiState.Loading)
         private set
 
     init {
@@ -28,25 +28,26 @@ class HomeTransaksiViewModel (private val trans: TransaksiRepository) : ViewMode
 
     fun getTransaksi() {
         viewModelScope.launch {
-            transaksiUiState = HomeUiState.Loading
+            transaksiUiState = HomeTransaksiUiState.Loading
             transaksiUiState = try {
-                HomeUiState.Success(trans.getAllTransaksi().data)
+                HomeTransaksiUiState.Success(trans.getAllTransaksi().data)
             } catch (e: IOException) {
-                HomeUiState.Error
+                HomeTransaksiUiState.Error
             } catch (e: HttpException) {
-                HomeUiState.Error
+                HomeTransaksiUiState.Error
             }
         }
     }
 
-    fun deleteTransaksi(id: String) {
+    fun deleteTransaksi(idTransaksi: String) {
         viewModelScope.launch {
             try {
-                trans.deleteTransaksi(id)
+                trans.deleteTransaksi(idTransaksi)
+                getTransaksi() // untuk refsresh data setelah dihapus
             } catch (e: IOException) {
-                HomeUiState.Error
+                HomeTransaksiUiState.Error
             } catch (e: HttpException) {
-                HomeUiState.Error
+                HomeTransaksiUiState.Error
             }
         }
     }

@@ -17,18 +17,18 @@ interface PesertaService {
         "Content-Type: application/json",
     )
 
-    @GET("getpeserta")
+    @GET("api/peserta")
     suspend fun getAllPeserta(): AllPesertaResponse
 
-    @GET("{id_peserta}")
+    @GET("api/peserta/{id_peserta}")
     suspend fun getPesertaById(@Path("id_peserta") idPeserta: String): PesertaDetailResponse
 
-    @POST("storepeserta")
+    @POST("api/peserta/storepeserta")
     suspend fun insertPeserta(@Body peserta: Peserta)
 
-    @PUT("{id_peserta}")
+    @PUT("api/peserta/{id_peserta}")
     suspend fun updatePeserta(@Path("id_peserta") idPeserta: String, @Body peserta: Peserta)
 
-    @DELETE("{id_peserta}")
+    @DELETE("api/peserta/{id_peserta}")
     suspend fun deletePeserta(@Path("id_peserta") idPeserta: String): retrofit2.Response<Void>
 }

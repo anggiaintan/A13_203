@@ -26,7 +26,7 @@ import com.example.projectpam.navigation.DestinasiNavigasi
 import com.example.projectpam.ui.customwidget.CostumeTopAppBar
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.DetailTransaksiViewModel
-import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.DetailUiState
+import com.example.projectpam.ui.viewmodel.viewmodeltransaksi.DetailTransaksiUiState
 
 
 object DestinasiDetailTransaksi : DestinasiNavigasi {
@@ -65,21 +65,21 @@ fun DetailTransaksiView (
 @Composable
 fun BodyDetailTransaksi (
     modifier: Modifier = Modifier,
-    detailUiState: DetailUiState,
+    detailUiState: DetailTransaksiUiState,
     retryAction: () -> Unit = {}
 ) {
     when (detailUiState) {
-        is DetailUiState.Loading -> {
+        is DetailTransaksiUiState.Loading -> {
             OnLoading(modifier = modifier.fillMaxSize())
         }
-        is DetailUiState.Success->{
+        is DetailTransaksiUiState.Success->{
             Column (
                 modifier = modifier
                     .fillMaxSize()
                     .padding(16.dp)
             ){  ItemDetailTransaksi (transaksi = detailUiState.transaksi) }
         }
-        is DetailUiState.Error->{
+        is DetailTransaksiUiState.Error->{
             OnError(
                 retryAction = retryAction,
                 modifier = modifier.fillMaxSize()

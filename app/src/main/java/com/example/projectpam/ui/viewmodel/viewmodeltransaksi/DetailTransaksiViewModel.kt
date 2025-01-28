@@ -10,10 +10,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-sealed class DetailUiState {
-    data class Success (val transaksi: Transaksi) : DetailUiState()
-    object Error : DetailUiState()
-    object Loading : DetailUiState()
+sealed class DetailTransaksiUiState {
+    data class Success (val transaksi: Transaksi) : DetailTransaksiUiState()
+    object Error : DetailTransaksiUiState()
+    object Loading : DetailTransaksiUiState()
 }
 
 class DetailTransaksiViewModel (
@@ -21,20 +21,20 @@ class DetailTransaksiViewModel (
     private val trans: TransaksiRepository
 ): ViewModel() {
     private val _idTransaksi: String = checkNotNull(savedStateHandle[DestinasiDetailTransaksi.ID_TRANSAKSI])
-    private val _detailUiState = MutableStateFlow<DetailUiState>(DetailUiState.Loading)
-    val detailUiState: StateFlow<DetailUiState> = _detailUiState
+    private val _detailUiState = MutableStateFlow<DetailTransaksiUiState>(DetailTransaksiUiState.Loading)
+    val detailUiState: StateFlow<DetailTransaksiUiState> = _detailUiState
     init { getDetailTransaksi() }
     fun getDetailTransaksi() {
         viewModelScope.launch {
             try {
-                _detailUiState.value = DetailUiState.Loading
+                _detailUiState.value = DetailTransaksiUiState.Loading
                 val transaksi = trans.getTransaksiById(_idTransaksi)
                 if (transaksi != null) {
-                    _detailUiState.value = DetailUiState.Success(transaksi)
+                    _detailUiState.value = DetailTransaksiUiState.Success(transaksi)
                 } else {
-                    _detailUiState.value = DetailUiState.Error }
+                    _detailUiState.value = DetailTransaksiUiState.Error }
             } catch (e: Exception) {
-                _detailUiState.value = DetailUiState.Error
+                _detailUiState.value = DetailTransaksiUiState.Error
             }
         }
     }

@@ -44,7 +44,7 @@ import com.example.projectpam.navigation.DestinasiNavigasi
 import com.example.projectpam.ui.customwidget.CostumeTopAppBar
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 import com.example.projectpam.ui.viewmodel.viewmodeltiket.HomeTiketViewModel
-import com.example.projectpam.ui.viewmodel.viewmodeltiket.HomeUiState
+import com.example.projectpam.ui.viewmodel.viewmodeltiket.HomeTiketUiState
 
 object DestinasiHomeTiket : DestinasiNavigasi {
     override val route = "homeTiket"
@@ -57,6 +57,7 @@ fun TiketHomeScreen (
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
     onDetailClick: (String) -> Unit = {},
+    navigateBack: () -> Unit,
     viewModel: HomeTiketViewModel = viewModel( factory = PenyediaViewModel.Factory)
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -65,7 +66,8 @@ fun TiketHomeScreen (
         topBar = {
             CostumeTopAppBar (
                 title = DestinasiHomeTiket.titleRes,
-                canNavigateBack = false,
+                canNavigateBack = true,
+                navigateUp = navigateBack,
                 scrollBehavior = scrollBehavior,
                 onRefresh = {
                     viewModel.getTiket()
@@ -97,15 +99,15 @@ fun TiketHomeScreen (
 
 @Composable
 fun HomeStatus (
-    homeUiState: HomeUiState,
+    homeUiState: HomeTiketUiState,
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
     onDeleteClick: (Tiket) -> Unit = {},
     onDetailClick: (String) -> Unit = {},
 ) {
     when (homeUiState) {
-        is HomeUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
-        is HomeUiState.Success ->
+        is HomeTiketUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
+        is HomeTiketUiState.Success ->
             if (homeUiState.tiket.isEmpty()) {
                 return Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(text = "Tidak ada data tiket")
@@ -123,7 +125,7 @@ fun HomeStatus (
                 )
 
             }
-        is HomeUiState.Error -> OnError(retryAction = retryAction, modifier = modifier.fillMaxSize())
+        is HomeTiketUiState.Error -> OnError(retryAction = retryAction, modifier = modifier.fillMaxSize())
     }
 }
 
@@ -228,25 +230,4 @@ fun TiketCard (
             )
         }
     }
-}
-@Composable
-private fun DeleteConfirmationDialog(
-    onDeleteConfirm: () -> Unit,
-    onDeleteCancel: () -> Unit,
-    modifier: Modifier = Modifier
-){
-    AlertDialog(onDismissRequest = {},
-        title = { Text("Delete Data") },
-        text = { Text("Apakah anda yakin ingin menghapus data ini?") },
-        modifier = modifier,
-        dismissButton = {
-            TextButton(onClick = onDeleteCancel) {
-                Text("Cancel")
-            }
-        },
-        confirmButton = {
-            TextButton(onClick = onDeleteConfirm) {
-                Text("Yes")
-            }
-        })
 }

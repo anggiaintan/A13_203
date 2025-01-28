@@ -38,12 +38,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.projectpam.R
 import com.example.projectpam.model.Peserta
 import com.example.projectpam.navigation.DestinasiNavigasi
 import com.example.projectpam.ui.customwidget.CostumeTopAppBar
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.HomePesertaViewModel
-import com.example.projectpam.ui.viewmodel.viewmodelpeserta.HomeUiState
+import com.example.projectpam.ui.viewmodel.viewmodelpeserta.HomePesertaUiState
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
 
 object DestinasiHomePeserta : DestinasiNavigasi {
@@ -57,7 +58,8 @@ fun PesertaHomeScreen (
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
     onDetailClick: (String) -> Unit = {},
-    viewModel: HomePesertaViewModel = viewModel( factory = PenyediaViewModel.Factory)
+    navigateBack: () -> Unit,
+    viewModel: HomePesertaViewModel = viewModel( factory = PenyediaViewModel.Factory),
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold (
@@ -65,7 +67,8 @@ fun PesertaHomeScreen (
         topBar = {
             CostumeTopAppBar (
                 title = DestinasiHomePeserta.titleRes,
-                canNavigateBack = false,
+                canNavigateBack = true,
+                navigateUp = navigateBack,
                 scrollBehavior = scrollBehavior,
                 onRefresh = {
                     viewModel.getPeserta()
@@ -85,7 +88,7 @@ fun PesertaHomeScreen (
         },
     ) { innerPadding ->
         HomeStatus (
-            homeUiState = viewModel.pesertaUiState,
+            homeUiState = viewModel.pesertaUIState,
             retryAction = {viewModel.getPeserta()}, modifier = Modifier.padding(innerPadding),
             onDetailClick = onDetailClick, onDeleteClick = {
                 viewModel.deletePeserta(it.id_peserta)
@@ -97,15 +100,15 @@ fun PesertaHomeScreen (
 
 @Composable
 fun HomeStatus (
-    homeUiState: HomeUiState,
+    homeUiState: HomePesertaUiState,
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
     onDeleteClick: (Peserta) -> Unit = {},
     onDetailClick: (String) -> Unit = {},
 ) {
     when (homeUiState) {
-        is HomeUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
-        is HomeUiState.Success ->
+        is HomePesertaUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
+        is HomePesertaUiState.Success ->
             if (homeUiState.peserta.isEmpty()) {
                 return Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(text = "Tidak ada data peserta")
@@ -123,7 +126,7 @@ fun HomeStatus (
                 )
 
             }
-        is HomeUiState.Error -> OnError(retryAction = retryAction, modifier = modifier.fillMaxSize())
+        is HomePesertaUiState.Error -> OnError(retryAction = retryAction, modifier = modifier.fillMaxSize())
     }
 }
 
@@ -172,7 +175,7 @@ fun PesertaLayout (
                     .fillMaxWidth()
                     .clickable { onDetailClick(peserta) },
                 onDeleteClick = {
-                    onDeleteClick(it)
+                    onDeleteClick(peserta)
                 }
             )
         }
@@ -224,25 +227,4 @@ fun PesertaCard (
             )
         }
     }
-}
-@Composable
-private fun DeleteConfirmationDialog(
-    onDeleteConfirm: () -> Unit,
-    onDeleteCancel: () -> Unit,
-    modifier: Modifier = Modifier
-){
-    AlertDialog(onDismissRequest = {},
-        title = { Text("Delete Data") },
-        text = { Text("Apakah anda yakin ingin menghapus data ini?") },
-        modifier = modifier,
-        dismissButton = {
-            TextButton(onClick = onDeleteCancel) {
-                Text("Cancel")
-            }
-        },
-        confirmButton = {
-            TextButton(onClick = onDeleteConfirm) {
-                Text("Yes")
-            }
-        })
 }

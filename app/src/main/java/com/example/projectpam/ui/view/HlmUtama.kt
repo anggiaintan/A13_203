@@ -51,8 +51,6 @@ val TextColor = Color.Black
 
 object DestinasiHalamanUtama : DestinasiNavigasi {
     override val route = "halaman_utama"
-    const val home = "id_peserta"
-    val routeWithArg = "$route/{$home}"
     override val titleRes = "Halaman Utama"
 }
 
@@ -71,7 +69,10 @@ fun HalamanUtama(navController: NavController, modifier: Modifier = Modifier
                 // Header
                 Row(
                     modifier = Modifier
-                        .padding(20.dp),
+                        .padding(20.dp)
+                        .fillMaxWidth()
+                        .shadow(8.dp, shape = RoundedCornerShape(16.dp))
+                        .background(PrimaryColor.copy(alpha = 0.2f)),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Image(
@@ -90,11 +91,14 @@ fun HalamanUtama(navController: NavController, modifier: Modifier = Modifier
                         )
                         Text(
                             text = "Aplikasi TiketKu by Anggia",
-                            color = AccentColor,
-                            fontWeight = FontWeight.Medium
+                            color = TextColor,
+                            fontWeight = FontWeight.Medium,
+                            fontSize = 14.sp
                         )
                     }
                 }
+                
+                Spacer(modifier = Modifier.height(16.dp))
 
                 // Kontainer konten utama
                 Box(
@@ -103,7 +107,7 @@ fun HalamanUtama(navController: NavController, modifier: Modifier = Modifier
                         .background(
                             Brush.verticalGradient(
                                 colors = listOf(
-                                    Color.White,
+                                    Color(0xFFF3F4F6),
                                     AccentColor.copy(alpha = 0.1f)
                                 )
                             ),

@@ -64,9 +64,10 @@ fun PengelolaHalaman(
                 navigateToItemEntry = { navController.navigate(DestinasiEntryPeserta.route) },
                 onDetailClick = { idPeserta ->
                     navController.navigate("${DestinasiDetailPeserta.route}/$idPeserta") {
-                        popUpTo(DestinasiHomePeserta.route) { inclusive = true }
+                        popUpTo(DestinasiHomePeserta.route) { inclusive = false }
                     }
-                }
+                },
+                navigateBack = {navController.popBackStack()}
             )
         }
         composable(DestinasiEntryPeserta.route) {
@@ -78,7 +79,7 @@ fun PengelolaHalaman(
         ) { backStackEntry ->
             val idPeserta = backStackEntry.arguments?.getString(DestinasiDetailPeserta.ID_PESERTA).orEmpty()
             DetailPesertaView(
-                idPeserta = idPeserta,
+                id_peserta = idPeserta,
                 navigateBack = { navController.popBackStack() },
                 onEditClick = {
                     navController.navigate("${DestinasiUpdatePeserta.route}/$idPeserta")
@@ -99,9 +100,10 @@ fun PengelolaHalaman(
                 navigateToItemEntry = { navController.navigate(DestinasiEntryEvent.route) },
                 onDetailClick = { idEvent ->
                     navController.navigate("${DestinasiDetailEvent.route}/$idEvent") {
-                        popUpTo(DestinasiHomeEvent.route) { inclusive = true }
+                        popUpTo(DestinasiHomeEvent.route) { inclusive = false }
                     }
-                }
+                },
+                navigateBack = {navController.popBackStack()}
             )
         }
         composable(DestinasiEntryEvent.route) {
@@ -113,7 +115,7 @@ fun PengelolaHalaman(
         ) { backStackEntry ->
             val idEvent = backStackEntry.arguments?.getString(DestinasiDetailEvent.ID_EVENT).orEmpty()
             DetailEventView(
-                idEvent = idEvent,
+                id_event = idEvent,
                 navigateBack = { navController.popBackStack() },
                 onEditClick = {
                     navController.navigate("${DestinasiUpdateEvent.route}/$idEvent")
@@ -134,9 +136,10 @@ fun PengelolaHalaman(
                 navigateToItemEntry = { navController.navigate(DestinasiEntryTiket.route) },
                 onDetailClick = { idTiket ->
                     navController.navigate("${DestinasiDetailTiket.route}/$idTiket") {
-                        popUpTo(DestinasiHomeTiket.route) { inclusive = true }
+                        popUpTo(DestinasiHomeTiket.route) { inclusive = false }
                     }
-                }
+                },
+                navigateBack = {navController.popBackStack()}
             )
         }
         composable(DestinasiEntryTiket.route) {
@@ -169,9 +172,10 @@ fun PengelolaHalaman(
                 navigateToItemEntry = { navController.navigate(DestinasiEntryTransaksi.route) },
                 onDetailClick = { idTransaksi ->
                     navController.navigate("${DestinasiDetailTransaksi.route}/$idTransaksi") {
-                        popUpTo(DestinasiHomeTransaksi.route) { inclusive = true }
+                        popUpTo(DestinasiHomeTransaksi.route) { inclusive = false }
                     }
-                }
+                },
+                navigateBack = {navController.popBackStack()}
             )
         }
         composable(DestinasiEntryTransaksi.route) {

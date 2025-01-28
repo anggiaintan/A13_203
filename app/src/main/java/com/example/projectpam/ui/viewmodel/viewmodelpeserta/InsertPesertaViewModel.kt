@@ -9,17 +9,17 @@ import com.example.projectpam.model.Peserta
 import com.example.projectpam.repository.PesertaRepository
 import kotlinx.coroutines.launch
 
-class InsertPesertaViewModel (private val peserta: PesertaRepository): ViewModel() {
+class InsertPesertaViewModel (private val pesertaRepository: PesertaRepository): ViewModel() {
     var uiState by mutableStateOf(InsertPesertaUiState())
         private set
     fun updateInsertPesertaState(insertUiEvent: InsertPesertaUiEvent) {
         uiState = InsertPesertaUiState (insertUiEvent = insertUiEvent)
     }
 
-    suspend fun insertPeserta() {
+    fun insertPeserta() {
         viewModelScope.launch {
             try {
-                peserta.insertPeserta(uiState.insertUiEvent.toPeserta())
+                pesertaRepository.insertPeserta(uiState.insertUiEvent.toPeserta())
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -32,17 +32,17 @@ data class InsertPesertaUiState (
 )
 
 data class InsertPesertaUiEvent (
-    val idPeserta: String = "",
-    val namaPeserta: String = "",
+    val id_peserta: String = "",
+    val nama_peserta: String = "",
     val email: String = "",
-    val nomorTelepon: String = ""
+    val nomor_telepon: String = ""
 )
 
 fun InsertPesertaUiEvent.toPeserta(): Peserta = Peserta (
-    id_peserta = idPeserta,
-    nama_peserta = namaPeserta,
+    id_peserta = id_peserta,
+    nama_peserta = nama_peserta,
     email = email,
-    nomor_telepon = nomorTelepon
+    nomor_telepon = nomor_telepon
 )
 
 fun Peserta.toUiStatePeserta(): InsertPesertaUiState = InsertPesertaUiState (
@@ -50,8 +50,8 @@ fun Peserta.toUiStatePeserta(): InsertPesertaUiState = InsertPesertaUiState (
 )
 
 fun Peserta.toInsertUiEvent(): InsertPesertaUiEvent = InsertPesertaUiEvent (
-    idPeserta = id_peserta,
-    namaPeserta = nama_peserta,
+    id_peserta = id_peserta,
+    nama_peserta = nama_peserta,
     email = email,
-    nomorTelepon = nomor_telepon
+    nomor_telepon = nomor_telepon
 )

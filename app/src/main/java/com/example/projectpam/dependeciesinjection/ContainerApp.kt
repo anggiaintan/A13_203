@@ -25,61 +25,44 @@ interface AppContainer {
 }
 
 class ContainerApp: AppContainer {
-    private val pesertabaseUrl = "http://192.168.0.106:3000/api/peserta"
-    private val eventbaseUrl = "http://192.168.0.106:3000/api/event"
-    private val tiketbaseUrl = "http://192.168.0.106:3000/api/tiket"
-    private val transaksibaseUrl = "http://192.168.0.106:3000/api/transaksi"
+    private val baseUrl =  "https://3552-118-96-148-11.ngrok-free.app/"
+        //"http://192.168.100.116:3000/api/"
 
     private val json = Json { ignoreUnknownKeys = true }
 
-    // peserta
     private val retrofit: Retrofit = Retrofit.Builder()
         .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
-        .baseUrl(pesertabaseUrl)
-        .build()
-
-    // event
-    private val retrofitEvent: Retrofit = Retrofit.Builder()
-        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
-        .baseUrl(eventbaseUrl)
-        .build()
-
-    // tiket
-    private val retrofitTiket: Retrofit = Retrofit.Builder()
-        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
-        .baseUrl(tiketbaseUrl)
-        .build()
-
-    // transaksi
-    private val retrofitTransaksi: Retrofit = Retrofit.Builder()
-        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
-        .baseUrl(transaksibaseUrl)
+        .baseUrl(baseUrl)
         .build()
 
     private val pesertaService: PesertaService by lazy {
         retrofit.create(PesertaService::class.java)
     }
-    override val pesertaRepository: PesertaRepository by lazy {
-        NetworkPesertaRepository(pesertaService)
-    }
 
     private val eventService: EventService by lazy {
         retrofit.create(EventService::class.java)
-    }
-    override val eventRepository: EventRepository by lazy {
-        NetworkEventRepository(eventService)
     }
 
     private val tiketService: TiketService by lazy {
         retrofit.create(TiketService::class.java)
     }
-    override val tiketRepository: TiketRepository by lazy {
-        NetworkTiketRepository(tiketService)
-    }
 
     private val transaksiService: TransaksiService by lazy {
         retrofit.create(TransaksiService::class.java)
     }
+
+    override val pesertaRepository: PesertaRepository by lazy {
+        NetworkPesertaRepository(pesertaService)
+    }
+
+    override val eventRepository: EventRepository by lazy {
+        NetworkEventRepository(eventService)
+    }
+
+    override val tiketRepository: TiketRepository by lazy {
+        NetworkTiketRepository(tiketService)
+    }
+
     override val transaksiRepository: TransaksiRepository by lazy {
         NetworkTransaksiRepository(transaksiService)
     }

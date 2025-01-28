@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
@@ -18,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.projectpam.navigation.DestinasiNavigasi
@@ -127,8 +129,8 @@ fun FormInputTiket(
             singleLine = true
         )
         OutlinedTextField (
-            value = insertUiEvent.id_pengguna,
-            onValueChange = {onValueChange(insertUiEvent.copy(id_pengguna = it))},
+            value = insertUiEvent.id_peserta,
+            onValueChange = {onValueChange(insertUiEvent.copy(id_peserta = it))},
             label = { Text("ID Pengguna") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
@@ -137,6 +139,7 @@ fun FormInputTiket(
         OutlinedTextField (
             value = insertUiEvent.kapasitas_tiket.toString(),
             onValueChange = {onValueChange(insertUiEvent.copy(kapasitas_tiket = it.toIntOrNull() ?: 0))},
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             label = { Text("Kapasitas Tiket") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
@@ -145,6 +148,7 @@ fun FormInputTiket(
         OutlinedTextField (
             value = insertUiEvent.harga_tiket,
             onValueChange = {onValueChange(insertUiEvent.copy(harga_tiket = it))},
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
             label = { Text("Harga Tiket") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,

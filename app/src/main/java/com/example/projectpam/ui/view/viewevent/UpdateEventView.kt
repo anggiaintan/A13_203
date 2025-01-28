@@ -15,8 +15,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.projectpam.navigation.DestinasiNavigasi
 import com.example.projectpam.ui.customwidget.CostumeTopAppBar
 import com.example.projectpam.ui.viewmodel.viewmodelevent.UpdateEventViewModel
-import com.example.projectpam.ui.viewmodel.viewmodelevent.toEvent
 import com.example.projectpam.ui.viewmodel.viewmodelpeserta.PenyediaViewModel
+import com.example.projectpam.ui.viewmodel.viewmodelpeserta.toEvn
 import kotlinx.coroutines.launch
 
 object DestinasiUpdateEvent : DestinasiNavigasi {
@@ -52,7 +52,7 @@ fun UpdateEventView (
                 .fillMaxSize()
                 .padding(padding)
                 .padding(16.dp)
-        ){ com.example.projectpam.ui.view.viewevent.EntryBodyEvent(insertUiState = uiState,
+        ){ EntryBodyEvent(insertUiState = uiState,
             onEventValueChange  = { updateValue->
                 viewModel.updateEventState(updateValue)
             },
@@ -60,7 +60,7 @@ fun UpdateEventView (
                 coroutineScope.launch {
                     viewModel.updateEvent(
                         id_event = viewModel.id_event,
-                        event = insertUiEvent.toEvent()
+                        event = insertUiEvent.toEvn()
                     )
                     navigateBack()
                 }

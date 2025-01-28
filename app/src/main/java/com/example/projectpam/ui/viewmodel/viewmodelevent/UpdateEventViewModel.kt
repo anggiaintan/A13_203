@@ -7,28 +7,37 @@ import androidx.lifecycle.viewModelScope
 import com.example.projectpam.model.Event
 import com.example.projectpam.repository.EventRepository
 import com.example.projectpam.ui.view.viewevent.DestinasiUpdateEvent
+import com.example.projectpam.ui.viewmodel.viewmodelpeserta.InsertEventUiEvent
+import com.example.projectpam.ui.viewmodel.viewmodelpeserta.InsertEventUiState
+import com.example.projectpam.ui.viewmodel.viewmodelpeserta.toInsertUiEvent
+import com.example.projectpam.ui.viewmodel.viewmodelpeserta.toUiStateEvent
 import kotlinx.coroutines.launch
 
 class UpdateEventViewModel (
     savedStateHandle: SavedStateHandle,
     private val evn: EventRepository
-): ViewModel()
-{
+): ViewModel() {
+
     val id_event: String = checkNotNull(savedStateHandle[DestinasiUpdateEvent.ID_EVENT])
     var uiState = mutableStateOf(InsertEventUiState())
-    init {getEvent()}
-    private fun getEvent(){
+
+    init {
+        getEvent()
+    }
+
+    private fun getEvent() {
         viewModelScope.launch {
             try {
                 val event = evn.getEventById(id_event)
                 event?.let {
-                    uiState.value = it.toInsertUIEvent()
+                    uiState.value = it.toUiStateEvent()
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
     }
+
     fun updateEvent(id_event: String, event: Event) {
         viewModelScope.launch {
             try {
@@ -43,6 +52,6 @@ class UpdateEventViewModel (
         uiState.value = uiState.value.copy(insertUiEvent = insertUiEvent)
     }
 }
-fun Event.toInsertUIEvent(): InsertEventUiState = InsertEventUiState (
-    insertUiEvent = this.toDetailUiEvent()
-)
+    fun Event.toInsertUIEvent(): InsertEventUiState = InsertEventUiState(
+        insertUiEvent = this.toDetailUiEvent()
+    )
