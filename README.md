@@ -36,3 +36,7 @@ Halaman home tiket:
 ![Screenshot (1202)](https://github.com/user-attachments/assets/ab395ab2-bdae-44d3-bc10-330169056c2e)
 Tambah tiket (mohon maaf mas masih belum bisa ngisi id event dan id peserta):
 ![Screenshot (1203)](https://github.com/user-attachments/assets/6e0e84f6-f5ad-44c7-a690-636cb40151f7)
+Database tabel peserta:
+![Screenshot (1206)](https://github.com/user-attachments/assets/7886395a-af90-4a0b-ad8e-26840026f00c)
+Database tabel event:
+![Screenshot (1205)](https://github.com/user-attachments/assets/6de568d0-b4f9-4224-8443-5fff5299bbb0)
