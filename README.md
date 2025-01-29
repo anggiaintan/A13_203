@@ -34,5 +34,5 @@ Event berhasil dihapus:
 ![Screenshot (1201)](https://github.com/user-attachments/assets/1eeb7844-696e-4e3e-998f-78552d47cc83)
 Halaman home tiket:
 ![Screenshot (1202)](https://github.com/user-attachments/assets/ab395ab2-bdae-44d3-bc10-330169056c2e)
-Insert tiket (mohon maaf mas masih belum bisa ngisi id event dan id peserta):
+Tambah tiket (mohon maaf mas masih belum bisa ngisi id event dan id peserta):
 ![Screenshot (1203)](https://github.com/user-attachments/assets/6e0e84f6-f5ad-44c7-a690-636cb40151f7)
